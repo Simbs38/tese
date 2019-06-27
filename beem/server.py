@@ -20,7 +20,6 @@ import webtiles
 from botdb import BotDB
 from config import BeemConfig
 from dcss import DCSSManager
-from version import version
 from webtiles import WebTilesManager, db_tables
 
 # Will be configured by beem_server after the config is loaded.
@@ -152,7 +151,7 @@ def main():
     parser.add_argument("-c", dest="config_file", metavar="<toml-file>",
                         default=_DEFAULT_BEEM_CONFIG_FILE,
                         help="The beem config file to use.")
-    parser.add_argument("--version", action="version", version=version)
+    parser.add_argument("--version", action="version", version=4.0)
     args = parser.parse_args()
 
     server = BeemServer(args.config_file)

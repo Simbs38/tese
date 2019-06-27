@@ -17,9 +17,6 @@ import socket
 import json
 from websockets.exceptions import ConnectionClosed
 
-from chat import ChatWatcher, BotCommandException, bot_help_command
-from chat import pluralize_name
-from version import version as Version
 from connection import WebTilesConnection, WebTilesGameConnection
 
 _log = logging.getLogger()
@@ -132,8 +129,7 @@ class LobbyConnection(WebTilesConnection, ConnectionHandler):
             exc_type, exc_value, exc_tb)))
 
 
-class GameConnection(WebTilesGameConnection, ConnectionHandler,
-                     ChatWatcher):
+class GameConnection(WebTilesGameConnection, ConnectionHandler):
     """A game websocket connection that watches chat and responds to
     commands."""
 
@@ -244,7 +240,7 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
                (key == "name")     and (value == "simbs38") or
                (value == "map") or 
                (value =="msgs")):
-                print(key + " " + value)    
+                print("15:22 " + key + " " + value)    
                 #client_socket = socket.socket()  # instantiate
                 #client_socket.connect((HOST, PORT))
                 #client_socket.send(json.dumps(message).encode('utf-8'))
@@ -765,10 +761,6 @@ db_tables = {
 
 # WebTiles bot commands
 bot_commands = {
-    "bothelp" : {
-        "unlogged" : True,
-        "function" : bot_help_command,
-    },
     "status" : {
         "require_admin" : True,
         "function" : bot_status_command,
