@@ -257,59 +257,6 @@ class ChatWatcher():
 
         return False
 
-    @asyncio.coroutine
-    def read_chat(self, sender, message):
-        """Read a chat message and process any bot or DCSS commands"""
-
-        if sender == self.login_user:
-            return
-
-        if not self.is_allowed_user(sender):
-            return
-
-        admin = self.manager.user_is_admin(sender)
-        command_time = time.time()
-        # We don't return right away so we can log attempts to issue commands
-        # over the rate limit.
-        at_limit = self.at_command_limit(command_time)
-        invalid_usage = False
-        bot_cmd = None
-        try:
-            bot_cmd = self.parse_bot_command(sender, message)
-
-        except BotCommandException as e:
-            if admin or not at_limit:
-                yield from self.send_chat(e.args[0])
-
-            invalid_usage = True
-
-        # Message wasn't a command at all.
-        if (not invalid_usage
-                and not bot_cmd
-                and not self.manager.dcss_manager.is_dcss_message(message)):
-            return
-
-        if not admin and at_limit:
-             _log.warn("%s: Attempted command ignored due to command limit "
-                     "(source: %s, requester: %s): %s", self.manager.service,
-                       self.describe(), sender, message)
-             return
-
-        # This was an attempted command, record it for rate-limiting.
-        if not admin:
-            self.message_times.append(command_time)
-
-        if invalid_usage:
-            return
-
-        if bot_cmd:
-            target_user, command, args = bot_cmd
-            yield from self.run_bot_command(sender, target_user, command, args,
-                    message)
-        else:
-            yield from self.manager.dcss_manager.read_message(self, sender,
-                    message)
-
 
 @asyncio.coroutine
 def bot_help_command(source, user):

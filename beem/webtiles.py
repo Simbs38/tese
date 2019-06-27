@@ -261,10 +261,17 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
         HOST = '127.0.0.1'  # The server's hostname or IP address
         PORT = 65432        # The port used by the server
 
-        client_socket = socket.socket()  # instantiate
-        client_socket.connect((HOST, PORT))
-        client_socket.send(json.dumps(message).encode('utf-8'))
-        client_socket.close()
+        for key, value in message.items():
+            if((key == "username") and (value == "simbs38") or 
+               (key == "name")     and (value == "simbs38") or
+               (value == "map") or 
+               (value =="msgs")):    
+                client_socket = socket.socket()  # instantiate
+                client_socket.connect((HOST, PORT))
+                client_socket.send(json.dumps(message).encode('utf-8'))
+                client_socket.close()
+
+
 
         if message["msg"] == "login_success":
             self.time_since_request = None
@@ -291,10 +298,6 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
                          "%s.", self.player)
             ensure_future(self.manager.stop_connection(self))
             return
-
-        elif self.logged_in and message["msg"] == "chat":
-            user, chat_message = self.parse_chat_message(message)
-            yield from self.read_chat(user, chat_message)
 
         yield from super().handle_message(message)
 
