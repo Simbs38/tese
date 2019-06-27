@@ -240,24 +240,6 @@ class ChatWatcher():
                         "%s): %s", self.manager.service, self.describe(),
                         sender, orig_message)
 
-    def message_needs_escape(self, message):
-        """Check if the messages might get parsed by other chat bots and will
-        need escaping."""
-
-        return message.startswith("!")
-
-    def at_command_limit(self, command_time):
-        # Expire any timestamps longer than the command period.
-        for t in list(self.message_times):
-            if command_time - t >= self.manager.conf["command_period"]:
-                self.message_times.remove(t)
-
-        if len(self.message_times) >= self.manager.conf["command_limit"]:
-            return True
-
-        return False
-
-
 @asyncio.coroutine
 def bot_help_command(source, user):
     help_text = source.manager.conf["help_text"]

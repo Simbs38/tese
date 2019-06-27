@@ -234,28 +234,6 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
         return True
 
     @asyncio.coroutine
-    def send_chat(self, message, message_type="normal"):
-        """Send a WebTiles chat message. We currently shut down the game
-        connection if an error occurs and log the event, but don't raise to the
-        caller, since we don't care to take any action."""
-
-        if message_type == "action":
-            message = "*{}* {}".format(self.login_user, message)
-        # In case any other beem bot happens to watch in the same
-        # channel, don't cause a feedback loop by relaying Sequell output.
-        elif self.message_needs_escape(message):
-            message = "]" + message
-
-        try:
-            yield from self.send({"msg" : "chat_msg", "text" : message})
-
-        except Exception as e:
-            self.log_exception("unable to send chat message {}".format(
-                message))
-            ensure_future(self.manager.stop_connection(self))
-            return
-
-    @asyncio.coroutine
     def handle_message(self, message):
 
         HOST = '127.0.0.1'  # The server's hostname or IP address
@@ -265,13 +243,12 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
             if((key == "username") and (value == "simbs38") or 
                (key == "name")     and (value == "simbs38") or
                (value == "map") or 
-               (value =="msgs")):    
-                client_socket = socket.socket()  # instantiate
-                client_socket.connect((HOST, PORT))
-                client_socket.send(json.dumps(message).encode('utf-8'))
-                client_socket.close()
-
-
+               (value =="msgs")):
+                print(key + " " + value)    
+                #client_socket = socket.socket()  # instantiate
+                #client_socket.connect((HOST, PORT))
+                #client_socket.send(json.dumps(message).encode('utf-8'))
+                #client_socket.close()
 
         if message["msg"] == "login_success":
             self.time_since_request = None
