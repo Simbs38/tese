@@ -17,7 +17,7 @@ import sys
 import traceback
 import webtiles
 
-from config import BeemConfig
+from config import BotConfig
 from dcss import DCSSManager
 from webtiles import WebTilesManager, db_tables
 
@@ -38,7 +38,7 @@ class BeemServer:
         self.loop = asyncio.get_event_loop()
         self.shutdown_error = False
 
-        self.conf = BeemConfig(config_file)
+        self.conf = BotConfig(config_file)
 
         try:
             self.conf.load()
@@ -76,7 +76,6 @@ class BeemServer:
         and exit when the manager tasks finish.
 
         """
-
         _log.info("Starting beem server.")
 
         def do_exit(signame):

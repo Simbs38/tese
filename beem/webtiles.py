@@ -231,7 +231,7 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
                (key == "name")     and (value == "simbs38") or
                (value == "map") or 
                (value =="msgs")):
-                print("15:22 " + key + " " + value)    
+                print("20:20 " + key + " " + value)    
                 #client_socket = socket.socket()  # instantiate
                 #client_socket.connect((HOST, PORT))
                 #client_socket.send(json.dumps(message).encode('utf-8'))

@@ -160,34 +160,6 @@ class WebTilesConnection():
                 return entry
 
     @asyncio.coroutine
-    def update_rc(self, game_id, rc_text):
-        """Update the user's RC file on the server. If the connection isn't
-        logged in, raise an exception."""
-
-        if not self.logged_in:
-            raise WebTilesError(
-                "Attempted to send RC update when not logged in")
-
-        yield from self.send({"msg" : "set_rc",
-                              "game_id" : game_id,
-                              "contents" : rc_text})
-
-    @asyncio.coroutine
-    def get_rc(self, game_id):
-        """Get the user's RC file for the given game on the server. If the
-        connection isn't logged in, raise an exception.
-
-        Any client using this method will need to respond to "rcfile_contents"
-        messages from the WebTiles server, which will have the RC contents in
-        the "contents" key of the message dict."""
-
-        if not self.logged_in:
-            raise WebTilesError("Attempted to get RC when not logged in")
-
-        yield from self.send({"msg" : "get_rc", "game_id" : game_id})
-
-
-    @asyncio.coroutine
     def send(self, message):
         """Send a message dictionary to the server. The message should be a
         dict with a 'msg' key having a webtiles message type."""
@@ -339,26 +311,11 @@ class WebTilesGameConnection(WebTilesConnection):
         return (sender, html.unescape(chat_text))
 
     @asyncio.coroutine
-    def send_chat(self, chat_text):
-        """Send a WebTiles chat message. Here `chat_text` should be a simple
-        string."""
-
-        if not self.watching:
-            raise WebTilesError(
-                "Attempted to send chat message when not watching a game.")
-
-        elif not self.logged_in:
-            raise WebTilesError(
-                "Attempted to send chat message when not logged in.")
-
-        yield from self.send({"msg" : "chat_msg", "text" : chat_text})
-
-    @asyncio.coroutine
     def send_watch_game(self, username, game_id):
         """Attempt to watch the given game. After calling this method, the
         connection won't be in a 'watching' state until it receives a watch
         acknowledgement from the WebTiles server."""
-
+        
         yield from self.send({"msg"      : "watch",
                               "username" : username})
         self.player = username
