@@ -13,6 +13,8 @@ import signal
 import sys
 import time
 import traceback
+import socket
+import json
 from websockets.exceptions import ConnectionClosed
 
 from chat import ChatWatcher, BotCommandException, bot_help_command
@@ -255,7 +257,15 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler,
 
     @asyncio.coroutine
     def handle_message(self, message):
-        print(message)
+
+        HOST = '127.0.0.1'  # The server's hostname or IP address
+        PORT = 65432        # The port used by the server
+
+        client_socket = socket.socket()  # instantiate
+        client_socket.connect((HOST, PORT))
+        client_socket.send(json.dumps(message).encode('utf-8'))
+        client_socket.close()
+
         if message["msg"] == "login_success":
             self.time_since_request = None
 

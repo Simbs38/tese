@@ -1,2 +1,4 @@
 build/
 beem.egg-info/
+dist/
+beem/__pycache__/
