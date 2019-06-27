@@ -1,11 +1,3 @@
-# =======================
-# beem configuration file
-# =======================
-
-# Sqlite3 database file.
-db_file = "beem_data.db3"
-
-
 # =========================
 # === DCSS IRC settings ===
 [dcss]

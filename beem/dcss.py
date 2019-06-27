@@ -293,7 +293,6 @@ class DCSSManager():
             factory = irc.connection.Factory(wrapper=ssl.wrap_socket)
         else:
             factory = irc.connection.Factory()
-
         _log.info("DCSS: Connecting to IRC server %s port %d using nick %s",
                   self.conf["hostname"], self.conf["port"], self.conf["nick"])
         self.server.connect(self.conf["hostname"], self.conf["port"],

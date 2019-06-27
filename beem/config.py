@@ -166,8 +166,5 @@ class BeemConfig(BotConfig):
 
         super().load()
 
-        if not self.get("db_file"):
-            self.error("Field db_file undefined.")
-
         self.check_webtiles()
         self.check_dcss()
