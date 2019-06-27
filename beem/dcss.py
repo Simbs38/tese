@@ -245,10 +245,6 @@ class DCSSManager():
     ## Can't depend on beem_conf, as this isn't loaded yet.
     def __init__(self, conf):
         self.conf = conf
-        self.bots = {}
-        for bot_conf in self.conf["bots"]:
-            bot = IRCBot(self, bot_conf)
-            self.bots[bot_conf["nick"]] = bot
         self.managers = {}
 
         self.reactor = Reactor()
@@ -281,9 +277,6 @@ class DCSSManager():
 
         # Holds received IRC messages until they can be processed.
         self.messages = []
-
-        for bot_nick, bot in self.bots.items():
-            bot.init_query_data()
 
         if self.conf.get("fake_connect"):
             self.server.authenticated = True

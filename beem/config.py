@@ -75,41 +75,6 @@ class BotConfig():
         if log_conf.get("level"):
             logger.setLevel(log_conf["level"])
 
-    def check_dcss(self):
-        """Check that there is a 'dcss' table in the TOML data and that it has
-        the necessary entries."""
-
-        if not self.get("dcss"):
-            self.error("The dcss table is undefined.")
-
-        self.require_table_fields("dcss", self.dcss,
-                                  ["hostname", "port", "nick"])
-
-        self.require_table_fields("dcss", self.dcss, ["password"], "username")
-
-        if not self.dcss.get("bots"):
-            self.error("No IRC bots defined in the dcss.bots table.")
-
-        for i, entry in enumerate(self.dcss["bots"]):
-            table_desc = "dcss.bots, entry {}".format(i + 1)
-
-            self.require_table_fields(table_desc, entry, ["nick"])
-
-            found_service = False
-            pattern_fields = []
-            for s in bot_services:
-                field = "{}_patterns".format(s)
-                pattern_fields.append(field)
-
-                if entry.get(field):
-                    found_service = True
-                    break
-
-            if not found_service:
-                self.error("In {}, at least one of the pattern fields {} "
-                        "must be defined.".format(table_desc,
-                            ", ".join(pattern_fields)))
-
     def load(self):
         """Read the main TOML configuration data from self.path and check that
         the configuration is valid."""
@@ -167,4 +132,3 @@ class BeemConfig(BotConfig):
         super().load()
 
         self.check_webtiles()
-        self.check_dcss()

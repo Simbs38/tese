@@ -196,9 +196,6 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
         if not self.watching or not self.need_greeting:
             return
 
-        greeting = self.manager.conf["greeting_text"].replace("\n", " ")
-        greeting = greeting.replace("%n", self.login_user)
-        yield from self.send_chat(greeting)
         self.need_greeting = False
 
     def get_chat_dcss_nicks(self, sender):
