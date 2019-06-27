@@ -9,3 +9,4 @@ serve:
 clean:
 	sudo rm -rf beem/__pycache__
 	sudo rm -rf server/__pycache__
+	rm -f beem_data.db3

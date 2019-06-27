@@ -202,11 +202,3 @@ class BotDB():
 
     def get_user_data(self, user_name):
         return self.get_row(self.user_table, [user_name])
-
-    def register_user(self, user_name):
-        keys = self.get_table_keys(self.user_table)
-        return self.add_row(self.user_table, {keys[0] : user_name})
-
-    def set_user_field(self, user_name, field, value):
-        return self.set_row_field(self.user_table, [user_name], field,
-                value)
