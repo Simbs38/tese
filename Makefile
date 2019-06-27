@@ -1,11 +1,11 @@
 
 
 run: 
-	python3 setup.py build
-	sudo python3 setup.py install
-	beem
+	python3 beem/server.py
+
+serve:
+	python3 server/StateUpdate.py
 
 clean:
-	sudo rm -rf beem.egg-info
-	sudo rm -rf build
-	sudo rm -rf dist
+	sudo rm -rf beem/__pycache__
+	sudo rm -rf server/__pycache__

@@ -6,7 +6,7 @@ import os
 import os.path
 import pytoml
 
-from .dcss import bot_services
+from dcss import bot_services
 
 class BotConfig():
     """Base class for TOML config parsing for bots."""

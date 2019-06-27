@@ -13,12 +13,12 @@ import signal
 import sys
 import time
 import traceback
-import webtiles
 from websockets.exceptions import ConnectionClosed
 
-from .chat import ChatWatcher, BotCommandException, bot_help_command
-from .chat import pluralize_name
-from .version import version as Version
+from chat import ChatWatcher, BotCommandException, bot_help_command
+from chat import pluralize_name
+from version import version as Version
+from connection import WebTilesConnection, WebTilesGameConnection
 
 _log = logging.getLogger()
 
@@ -111,7 +111,7 @@ class ConnectionHandler():
                     return
 
 
-class LobbyConnection(webtiles.WebTilesConnection, ConnectionHandler):
+class LobbyConnection(WebTilesConnection, ConnectionHandler):
     """Lobby connection. Only needed due to different connection arguments and
     formatting on error messages."""
 
@@ -130,7 +130,7 @@ class LobbyConnection(webtiles.WebTilesConnection, ConnectionHandler):
             exc_type, exc_value, exc_tb)))
 
 
-class GameConnection(webtiles.WebTilesGameConnection, ConnectionHandler,
+class GameConnection(WebTilesGameConnection, ConnectionHandler,
                      ChatWatcher):
     """A game websocket connection that watches chat and responds to
     commands."""

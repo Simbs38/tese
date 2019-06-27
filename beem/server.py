@@ -17,11 +17,11 @@ import sys
 import traceback
 import webtiles
 
-from .botdb import BotDB
-from .config import BeemConfig
-from .dcss import DCSSManager
-from .version import version
-from .webtiles import WebTilesManager, db_tables
+from botdb import BotDB
+from config import BeemConfig
+from dcss import DCSSManager
+from version import version
+from webtiles import WebTilesManager, db_tables
 
 # Will be configured by beem_server after the config is loaded.
 _log = logging.getLogger()
@@ -157,3 +157,7 @@ def main():
 
     server = BeemServer(args.config_file)
     server.start()
+
+
+if __name__ == "__main__":
+    main()
