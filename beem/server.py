@@ -17,7 +17,6 @@ import sys
 import traceback
 import webtiles
 
-from botdb import BotDB
 from config import BeemConfig
 from dcss import DCSSManager
 from webtiles import WebTilesManager, db_tables
@@ -61,18 +60,8 @@ class BeemServer:
         sys.exit(1)
 
     def load_webtiles(self):
-        bot_db = BotDB(self.conf.db_file, db_tables, "webtiles_users")
-
-        try:
-            bot_db.load_db()
-
-        except Exception:
-            self.critical_error(
-                    "unable to load DB file {}:".format(self.conf.db_file))
-
         wtconf = self.conf.webtiles
-        self.webtiles_manager = WebTilesManager(wtconf, bot_db,
-                                                self.dcss_manager)
+        self.webtiles_manager = WebTilesManager(wtconf, self.dcss_manager)
 
         if wtconf.get("watch_username"):
             user_data = bot_db.get_user_data(wtconf["watch_username"])

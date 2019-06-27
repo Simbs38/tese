@@ -142,13 +142,7 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
 
         self.time_since_request = None
 
-        self.need_greeting = False
-        if manager.conf.get("greeting_text"):
-            user_data = manager.bot_db.get_user_data(player)
-            if user_data and user_data["subscription"] > 0:
-                self.need_greeting = False
-            else:
-                self.need_greeting = True
+        self.need_greeting = True
         # Last time we either send the watch command or had watched a game,
         # used so we can reuse connections, but end them after being idle for
         # too long.
@@ -276,9 +270,8 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
 
 
 class WebTilesManager():
-    def __init__(self, conf, bot_db, dcss_manager):
+    def __init__(self, conf, dcss_manager):
         self.conf = conf
-        self.bot_db = bot_db
         self.dcss_manager = dcss_manager
         self.bot_commands = bot_commands
 
@@ -486,7 +479,6 @@ class WebTilesManager():
         autowatch_game = None
         max_subscribers = self.conf["max_watched_subscribers"]
         for entry in self.lobby.lobby_entries:
-            subscribed = self.user_is_subscribed(entry["username"])
             queue_entry = self.get_queue_entry(entry["username"],
                                                entry["game_id"])
             idle_time = (entry["idle_time"] +
@@ -494,9 +486,6 @@ class WebTilesManager():
             if (not self.is_game_allowed(entry["username"], entry["game_id"])
                 or idle_time >= self.conf["max_game_idle"]):
                 continue
-
-            if subscribed and not queue_entry:
-                self.add_queue(entry["username"], entry["game_id"])
 
             conn = self.get_connection(entry["username"], entry["game_id"])
             # Only subscribers who don't have subscriber slots are valid
@@ -506,8 +495,6 @@ class WebTilesManager():
             # Find an autowatch candidate
             if (self.conf.get("autowatch_enabled")
                     and self.dcss_manager.ready()
-                    and entry["spectator_count"] >= min_spectators
-                    and (not subscribed or no_free_slot)
                     and (conn
                         and conn is self.autowatch
                         # If there's a tie, favor a game we're already
@@ -644,11 +631,6 @@ class WebTilesManager():
                 return False
 
         return True
-
-    def user_is_subscribed(self, username):
-        user_data = self.bot_db.get_user_data(username)
-        return user_data and user_data["subscription"] > 0
-
 
 @asyncio.coroutine
 def bot_subscribe_command(source, username):
