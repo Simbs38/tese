@@ -1,11 +1,11 @@
 
 
 run: 
-	python3 beem/server.py
+	python3 GameConnection/server.py
 
 serve:
 	python3 server/StateUpdate.py
 
 clean:
-	sudo rm -rf beem/__pycache__
+	sudo rm -rf GameConnection/__pycache__
 	sudo rm -rf server/__pycache__
