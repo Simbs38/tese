@@ -119,8 +119,7 @@ class LobbyConnection(WebTilesConnection, ConnectionHandler):
 
     def connect(self):
         yield from super().connect(
-            websocket_url=self.manager.conf["server_url"],
-            protocol_version=self.manager.conf["protocol_version"])
+            websocket_url=self.manager.conf["server_url"])
 
     def log_exception(self, error_msg):
         exc_type, exc_value, exc_tb = sys.exc_info()
@@ -163,8 +162,7 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
     def connect(self):
         yield from super().connect(self.manager.conf["server_url"],
                                    self.manager.conf["username"],
-                                   self.manager.conf["password"],
-                                   self.manager.conf["protocol_version"])
+                                   self.manager.conf["password"])
 
     def get_source_ident(self):
         """Get a unique identifier dict of the game for this connection.
@@ -267,13 +265,10 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
 
 
 class WebTilesManager():
-    def __init__(self, conf, dcss_manager):
+    def __init__(self, conf):
         self.conf = conf
-        self.dcss_manager = dcss_manager
-        self.bot_commands = bot_commands
-
+        
         self.service = "WebTiles"
-        dcss_manager.managers["WebTiles"] = self
         self.single_user = conf.get("watch_player") is not None
 
         self.lobby = None
@@ -369,7 +364,7 @@ class WebTilesManager():
                 self.lobby.task = ensure_future(self.lobby.start())
 
             autowatch_game = None
-            if self.conf["protocol_version"] >= 2 or self.lobby.lobby_complete:
+            if self.lobby.lobby_complete:
                 autowatch_game = self.process_lobby()
             if autowatch_game:
                 yield from self.do_autowatch_game(autowatch_game)
@@ -491,7 +486,6 @@ class WebTilesManager():
                             and len(self.connections) >= max_subscribers)
             # Find an autowatch candidate
             if (self.conf.get("autowatch_enabled")
-                    and self.dcss_manager.ready()
                     and (conn
                         and conn is self.autowatch
                         # If there's a tie, favor a game we're already

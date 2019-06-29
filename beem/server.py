@@ -18,13 +18,12 @@ import traceback
 import webtiles
 
 from config import BotConfig
-from dcss import DCSSManager
 from webtiles import WebTilesManager, db_tables
 
 # Will be configured by beem_server after the config is loaded.
 _log = logging.getLogger()
 
-_DEFAULT_BEEM_CONFIG_FILE = "beem_config.toml"
+_DEFAULT_BEEM_CONFIG_FILE = "config.toml"
 
 class BeemServer:
     """The beem server. Load the configuration and runs the tasks for the DCSS
@@ -47,7 +46,6 @@ class BeemServer:
             self.critical_error("Error loading configuration file"
                     " {}:".format(self.conf.path))
 
-        self.dcss_manager = DCSSManager(self.conf.dcss)
         self.load_webtiles()
 
     def critical_error(self, error_msg):
@@ -61,7 +59,7 @@ class BeemServer:
 
     def load_webtiles(self):
         wtconf = self.conf.webtiles
-        self.webtiles_manager = WebTilesManager(wtconf, self.dcss_manager)
+        self.webtiles_manager = WebTilesManager(wtconf)
 
         if wtconf.get("watch_username"):
             user_data = bot_db.get_user_data(wtconf["watch_username"])
@@ -124,12 +122,8 @@ class BeemServer:
         self.webtiles_task = ensure_future(self.webtiles_manager.start())
         tasks.append(self.webtiles_task)
 
-        self.dcss_task = ensure_future(self.dcss_manager.start())
-        tasks.append(self.dcss_task)
-
         yield from asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
 
-        self.dcss_manager.disconnect()
         yield from self.webtiles_manager.disconnect()
 
 

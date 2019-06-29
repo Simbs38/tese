@@ -1,0 +1,40 @@
+# =========================
+# === WebTiles settings ===
+[webtiles]
+
+# The WebTiles login the bot will use. This shouldn't be your own WebTiles
+# account, since then the bot will ignore messages from you.
+username = "ReinforcementBot"
+password = "qwerty123"
+
+# The websocket url of the server to watch at startup.
+server_url = "ws://crawl.xtahua.com:8080/socket"
+
+# To enable single user mode, set this field to a valid user name. The bot will
+# only watch the games of this user.
+watch_player = "simbs38"
+
+# Maximum number of subscribers the bot will watch on a server when not in
+# single user mode. This number is independent of connection reserved for the
+# autowatch feature.
+max_watched_subscribers = 50
+
+# Max time in seconds a game can be idle before the bot will refuse to spectate
+# a game or leave a game it is watching. This shouldn't be too low or a game
+# will lose its watch slot too easily, nor too high so that a game that's idle
+# a long time hogs a connection that does nothing.
+max_game_idle = 3600
+
+# Max time in seconds to wait after a game ends before removing it from the
+# watch queue. A user that rejoins before this period end won't lose their
+# designated slot.
+game_rewatch_timeout = 30
+
+# Set this to true to have the bot use a dedicated connection to watch the most
+# spectated non-idle game on the server. Note the connection used is
+# independent of the limit in `max_watched_subscribers' above.
+autowatch_enabled = true
+
+# The minimum spectators required for the bot to consider autowatching to a
+# game.
+min_autowatch_spectators = 0
