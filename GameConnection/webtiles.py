@@ -229,12 +229,11 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
                (key == "name")     and (value == "simbs38") or
                (value == "map") or 
                (value =="msgs")):
-                print("20:20 " + key + " " + value)    
-                #client_socket = socket.socket()  # instantiate
-                #client_socket.connect((HOST, PORT))
-                #client_socket.send(json.dumps(message).encode('utf-8'))
-                #client_socket.close()
-
+                client_socket = socket.socket()  # instantiate
+                client_socket.connect((HOST, PORT))
+                client_socket.send(json.dumps(message).encode('utf-8'))
+                client_socket.close()
+                
         if message["msg"] == "login_success":
             self.time_since_request = None
 

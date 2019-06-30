@@ -1,35 +1,30 @@
 
 import socket
-import json
-
+from MessageHandler import MessageHandler
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432       # Port to listen on (non-privileged ports are > 1023)
 
-
 class StateUpdateHandler():
+    server_socket = None
+    msg = None
+
     def __init__(self):
-        server_socket = socket.socket()
-        server_socket.bind((HOST, PORT))
+        self.server_socket = socket.socket()
+        self.server_socket.bind((HOST, PORT))
+        self.msg = MessageHandler()
+        self.StartServer()
+
+    def StartServer(self):
         while True:
-            server_socket.listen(1)
-            conn, add = server_socket.accept()
-            print("Connected to: " + str(add))
+            self.server_socket.listen(1)
+            conn, add = self.server_socket.accept()
             while True:
                 data = conn.recv(1000024)
                 if not data:
                     break
-                print(data.decode('utf-8'))
+                self.msg.ReceiveMsg(data)
             conn.close()
 
-class StateUpdate():
-    def __init__(self):
-        self.messages = []
-
-    def AddMessageToMessages(self, message):
-        self.messages.append(message)
-        print(message)
-
-
-
-st = StateUpdateHandler()
+if __name__ == "__main__":
+    St = StateUpdateHandler()
