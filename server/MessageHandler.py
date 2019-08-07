@@ -33,7 +33,6 @@ class MessageHandler():
 
 	def HandleMsgMap(self, msg):
 		print("Map " + str(type(msg)))
-		print(msg)
 
 	def HandleMsgMsgs(self, msg):
 		print("Msgs " + str(type(msg)))
