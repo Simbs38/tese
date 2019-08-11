@@ -1,11 +1,16 @@
 
+run:
+	python3 src/ReinforcementBot/main.py& python3 src/GameConnection/main.py
 
-run: 
-	python3 GameConnection/server.py
+bot:
+	python3 src/ReinforcementBot/main.py
 
-serve:
-	python3 server/StateUpdate.py
+server: 
+	python3 src/GameConnection/main.py
+
+dev:
+	python3 src/ReinforcementBot/Environment/main.py
+
 
 clean:
-	sudo rm -rf GameConnection/__pycache__
-	sudo rm -rf server/__pycache__
+	echo "To Do"
