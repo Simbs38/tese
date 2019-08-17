@@ -20,7 +20,7 @@ class StateUpdateHandler():
             self.server_socket.listen(1)
             conn, add = self.server_socket.accept()
             while True:
-                data = conn.recv(1000024)
+                data = conn.recv(10000000)
                 if not data:
                     break
                 self.msg.ReceiveMsg(data)

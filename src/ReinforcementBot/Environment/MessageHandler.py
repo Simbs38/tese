@@ -10,9 +10,15 @@ class MessageHandler():
 
 	def ReceiveMsg(self, msg):
 		data = msg.decode('utf-8')
-		sleep(.05) #sleep a bit in order to give json.load time to read the previus message
-		dataDict = loads(data)
-		self.HandleMsg(dataDict)
+		messageParsed = False
+		while not messageParsed:
+			try:
+				dataDict = loads(data)
+				messageParsed = True
+			except Exception as e:
+				sleep(0.01)
+			finally:
+				self.HandleMsg(dataDict)
 
 	def HandleMsg(self, dataDict):
 		for key, value in dataDict.items():
@@ -34,7 +40,7 @@ class MessageHandler():
 		print("User " + str(type(msg)))
 
 	def HandleMsgMap(self, msg):
-		self.GeneralHandler(msg)
+		#self.GeneralHandler(msg)
 		print("Map " + str(type(msg)))
 
 	def HandleMsgMsgs(self, msg):
@@ -50,8 +56,6 @@ class MessageHandler():
 		with open('messages.txt','w+') as json_file:
 			if oldData == None:
 				oldData = []
-			else:
-				oldData = [oldData]
 			oldData.append(msg)
 			jsoned_data = dumps(oldData, indent = True)
 			json_file.write(jsoned_data)
