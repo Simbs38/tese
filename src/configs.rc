@@ -3,6 +3,6 @@ auto_eat_chunks = true
 {
 
 function ready()
-  crawl.mpr(you.race() .. " " .. you.class() .. " " .. you.hp() .. " " ..  you.dexterity() .. " " .. you.intelligence() .. " " .. you.strength() .. " " .. tostring(you.have_orb()) .. " " .. you.hunger() .. " " .. you.turns() .. " " .. you.where() .. " " .. you.xl_progress())
+  crawl.mpr("ReinforcementStats: " .. you.race() .. " " .. you.class() .. " " .. you.hp() .. " " ..  you.dexterity() .. " " .. you.intelligence() .. " " .. you.strength() .. " " .. tostring(you.have_orb()) .. " " .. you.hunger() .. " " .. you.turns() .. " " .. you.where() .. " " .. you.xl_progress())
 end
 }

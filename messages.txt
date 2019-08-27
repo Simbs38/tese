@@ -25182,5 +25182,1335 @@
     "channel": 3
    }
   ]
+ },
+ {
+  "username": "simbs38",
+  "xl": "2",
+  "title": "Chopper",
+  "spectator_count": 0,
+  "god": "Trog",
+  "idle_time": 0,
+  "char": "MiBe",
+  "place": "D:1",
+  "msg": "lobby_entry",
+  "game_id": "dcss-0.23",
+  "id": 263818
+ },
+ {
+  "username": "simbs38",
+  "msg": "watching_started"
+ },
+ {
+  "msg": "player",
+  "name": "simbs38",
+  "title": "the Chopper",
+  "species": "Minotaur",
+  "god": "Trog",
+  "piety_rank": 1,
+  "hp": 27,
+  "hp_max": 27,
+  "real_hp_max": 27,
+  "mp": 1,
+  "mp_max": 1,
+  "poison_survival": 27,
+  "ac": 2,
+  "ev": 12,
+  "str": 21,
+  "str_max": 21,
+  "int": 4,
+  "int_max": 4,
+  "dex": 9,
+  "dex_max": 9,
+  "xl": 2,
+  "progress": 3,
+  "gold": 24,
+  "noise": -1,
+  "time": 4947,
+  "turn": 493,
+  "place": "Dungeon",
+  "depth": 1,
+  "pos": {
+   "x": 0,
+   "y": 0
+  },
+  "inv": {
+   "0": {
+    "base_type": 0,
+    "quantity": 1,
+    "sub_type": 18,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 hand axe",
+    "col": 2,
+    "tile": [
+     180
+    ]
+   },
+   "1": {
+    "base_type": 2,
+    "quantity": 1,
+    "sub_type": 16,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 animal skin",
+    "col": 2,
+    "tile": [
+     396
+    ]
+   },
+   "2": {
+    "base_type": 4,
+    "quantity": 1,
+    "sub_type": 0,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "ration",
+    "col": -1,
+    "tile": [
+     528
+    ]
+   },
+   "3": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled IDOAVE YPIGUDD",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "4": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled MOLIVU TACUW",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "5": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled QIORGHE DEITEBB",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   }
+  },
+  "equip": {
+   "0": 0,
+   "6": 1
+  },
+  "quiver_item": -1,
+  "unarmed_attack": "Nothing wielded",
+  "unarmed_attack_colour": 7,
+  "quiver_available": 1
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<yellow>Welcome back, simbs38 the Minotaur Berserker.<lightgrey>",
+    "turn": 493,
+    "channel": 0
+   },
+   {
+    "text": "<lightred>Trog says: Kill them all!<lightgrey>",
+    "turn": 493,
+    "channel": 3
+   }
+  ]
+ },
+ {
+  "username": "simbs38",
+  "xl": "2",
+  "title": "Chopper",
+  "spectator_count": 0,
+  "god": "Trog",
+  "idle_time": 378,
+  "char": "MiBe",
+  "place": "D:1",
+  "msg": "lobby_entry",
+  "game_id": "dcss-0.23",
+  "id": 263818
+ },
+ {
+  "username": "simbs38",
+  "msg": "watching_started"
+ },
+ {
+  "msg": "player",
+  "name": "simbs38",
+  "title": "the Chopper",
+  "wizard": 0,
+  "species": "Minotaur",
+  "god": "Trog",
+  "penance": 0,
+  "piety_rank": 1,
+  "form": 0,
+  "hp": 27,
+  "hp_max": 27,
+  "real_hp_max": 27,
+  "mp": 1,
+  "mp_max": 1,
+  "dd_real_mp_max": 0,
+  "poison_survival": 27,
+  "ac": 2,
+  "ev": 12,
+  "sh": 0,
+  "str": 21,
+  "str_max": 21,
+  "int": 4,
+  "int_max": 4,
+  "dex": 9,
+  "dex_max": 9,
+  "xl": 2,
+  "progress": 3,
+  "gold": 24,
+  "noise": -1,
+  "adjusted_noise": 0,
+  "time": 4947,
+  "turn": 493,
+  "place": "Dungeon",
+  "depth": 1,
+  "pos": {
+   "x": 0,
+   "y": 0
+  },
+  "status": [],
+  "inv": {
+   "0": {
+    "base_type": 0,
+    "quantity": 1,
+    "sub_type": 18,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 hand axe",
+    "col": 2,
+    "tile": [
+     180
+    ]
+   },
+   "1": {
+    "base_type": 2,
+    "quantity": 1,
+    "sub_type": 16,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 animal skin",
+    "col": 2,
+    "tile": [
+     396
+    ]
+   },
+   "2": {
+    "base_type": 4,
+    "quantity": 1,
+    "sub_type": 0,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "ration",
+    "col": -1,
+    "tile": [
+     528
+    ]
+   },
+   "3": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled IDOAVE YPIGUDD",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "4": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled MOLIVU TACUW",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "5": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled QIORGHE DEITEBB",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "6": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "7": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "8": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "9": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "10": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "11": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "12": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "13": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "14": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "15": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "16": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "17": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "18": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "19": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "20": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "21": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "22": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "23": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "24": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "25": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "26": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "27": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "28": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "29": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "30": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "31": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "32": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "33": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "34": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "35": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "36": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "37": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "38": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "39": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "40": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "41": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "42": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "43": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "44": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "45": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "46": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "47": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "48": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "49": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "50": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "51": {
+    "base_type": 100,
+    "quantity": 0
+   }
+  },
+  "equip": {
+   "0": 0,
+   "1": -1,
+   "2": -1,
+   "3": -1,
+   "4": -1,
+   "5": -1,
+   "6": 1,
+   "7": -1,
+   "8": -1,
+   "9": -1,
+   "10": -1,
+   "11": -1,
+   "12": -1,
+   "13": -1,
+   "14": -1,
+   "15": -1,
+   "16": -1,
+   "17": -1,
+   "18": -1
+  },
+  "quiver_item": -1,
+  "unarmed_attack": "Nothing wielded",
+  "unarmed_attack_colour": 7,
+  "quiver_available": 1
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 494 D:1 3<lightgrey>",
+    "turn": 494,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 495 D:1 3<lightgrey>",
+    "turn": 495,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 496 D:1 3<lightgrey>",
+    "turn": 496,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 497 D:1 3<lightgrey>",
+    "turn": 497,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 498 D:1 3<lightgrey>",
+    "turn": 498,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "msg": "msgs",
+  "messages": [
+   {
+    "text": "<lightgrey>ReinforcementStats: Minotaur Berserker 27 9 4 21 false 4 499 D:1 3<lightgrey>",
+    "turn": 499,
+    "channel": 0
+   }
+  ]
+ },
+ {
+  "username": "simbs38",
+  "xl": "2",
+  "title": "Chopper",
+  "spectator_count": 0,
+  "god": "Trog",
+  "idle_time": 406,
+  "char": "MiBe",
+  "place": "D:1",
+  "msg": "lobby_entry",
+  "game_id": "dcss-0.23",
+  "id": 263818
+ },
+ {
+  "username": "simbs38",
+  "msg": "watching_started"
+ },
+ {
+  "msg": "player",
+  "name": "simbs38",
+  "title": "the Chopper",
+  "wizard": 0,
+  "species": "Minotaur",
+  "god": "Trog",
+  "penance": 0,
+  "piety_rank": 1,
+  "form": 0,
+  "hp": 27,
+  "hp_max": 27,
+  "real_hp_max": 27,
+  "mp": 1,
+  "mp_max": 1,
+  "dd_real_mp_max": 0,
+  "poison_survival": 27,
+  "ac": 2,
+  "ev": 12,
+  "sh": 0,
+  "str": 21,
+  "str_max": 21,
+  "int": 4,
+  "int_max": 4,
+  "dex": 9,
+  "dex_max": 9,
+  "xl": 2,
+  "progress": 3,
+  "gold": 24,
+  "noise": -1,
+  "adjusted_noise": 0,
+  "time": 5007,
+  "turn": 499,
+  "place": "Dungeon",
+  "depth": 1,
+  "pos": {
+   "x": 2,
+   "y": 4
+  },
+  "status": [],
+  "inv": {
+   "0": {
+    "base_type": 0,
+    "quantity": 1,
+    "sub_type": 18,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 hand axe",
+    "col": 2,
+    "tile": [
+     180
+    ]
+   },
+   "1": {
+    "base_type": 2,
+    "quantity": 1,
+    "sub_type": 16,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 animal skin",
+    "col": 2,
+    "tile": [
+     396
+    ]
+   },
+   "2": {
+    "base_type": 4,
+    "quantity": 1,
+    "sub_type": 0,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "ration",
+    "col": -1,
+    "tile": [
+     528
+    ]
+   },
+   "3": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled IDOAVE YPIGUDD",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "4": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled MOLIVU TACUW",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "5": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled QIORGHE DEITEBB",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "6": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "7": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "8": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "9": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "10": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "11": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "12": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "13": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "14": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "15": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "16": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "17": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "18": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "19": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "20": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "21": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "22": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "23": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "24": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "25": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "26": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "27": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "28": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "29": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "30": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "31": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "32": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "33": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "34": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "35": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "36": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "37": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "38": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "39": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "40": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "41": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "42": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "43": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "44": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "45": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "46": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "47": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "48": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "49": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "50": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "51": {
+    "base_type": 100,
+    "quantity": 0
+   }
+  },
+  "equip": {
+   "0": 0,
+   "1": -1,
+   "2": -1,
+   "3": -1,
+   "4": -1,
+   "5": -1,
+   "6": 1,
+   "7": -1,
+   "8": -1,
+   "9": -1,
+   "10": -1,
+   "11": -1,
+   "12": -1,
+   "13": -1,
+   "14": -1,
+   "15": -1,
+   "16": -1,
+   "17": -1,
+   "18": -1
+  },
+  "quiver_item": -1,
+  "unarmed_attack": "Nothing wielded",
+  "unarmed_attack_colour": 7,
+  "quiver_available": 1
+ },
+ {
+  "username": "simbs38",
+  "xl": "3",
+  "title": "Chopper",
+  "spectator_count": 0,
+  "god": "Trog",
+  "idle_time": 3020,
+  "char": "MiBe",
+  "place": "D:2",
+  "msg": "lobby_entry",
+  "game_id": "dcss-0.23",
+  "id": 263884
+ },
+ {
+  "username": "simbs38",
+  "msg": "watching_started"
+ },
+ {
+  "msg": "player",
+  "name": "simbs38",
+  "title": "the Chopper",
+  "wizard": 0,
+  "species": "Minotaur",
+  "god": "Trog",
+  "penance": 0,
+  "piety_rank": 2,
+  "form": 0,
+  "hp": 23,
+  "hp_max": 33,
+  "real_hp_max": 33,
+  "mp": 2,
+  "mp_max": 2,
+  "dd_real_mp_max": 0,
+  "poison_survival": 23,
+  "ac": 2,
+  "ev": 12,
+  "sh": 0,
+  "str": 22,
+  "str_max": 22,
+  "int": 4,
+  "int_max": 4,
+  "dex": 9,
+  "dex_max": 9,
+  "xl": 3,
+  "progress": 41,
+  "gold": 53,
+  "noise": -1,
+  "adjusted_noise": 0,
+  "time": 16991,
+  "turn": 1692,
+  "place": "Dungeon",
+  "depth": 2,
+  "pos": {
+   "x": 0,
+   "y": 0
+  },
+  "status": [],
+  "inv": {
+   "0": {
+    "base_type": 0,
+    "quantity": 1,
+    "sub_type": 18,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 hand axe",
+    "col": 2,
+    "tile": [
+     180
+    ]
+   },
+   "1": {
+    "base_type": 2,
+    "quantity": 1,
+    "sub_type": 16,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "+0 animal skin",
+    "col": 2,
+    "tile": [
+     396
+    ]
+   },
+   "2": {
+    "base_type": 4,
+    "quantity": 2,
+    "sub_type": 0,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "2 rations",
+    "col": -1,
+    "tile": [
+     528
+    ]
+   },
+   "3": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled IDOAVE YPIGUDD",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "4": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled MOLIVU TACUW",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "5": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled QIORGHE DEITEBB",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "6": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled RIOTAUNOAJ",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "7": {
+    "base_type": 7,
+    "quantity": 1,
+    "sub_type": 31,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "fuming brown potion",
+    "col": 9,
+    "tile": [
+     717
+    ]
+   },
+   "8": {
+    "base_type": 6,
+    "quantity": 1,
+    "sub_type": 21,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 15,
+    "inscription": "",
+    "name": "ring of fire",
+    "col": 2,
+    "tile": [
+     609,
+     653
+    ]
+   },
+   "9": {
+    "base_type": 5,
+    "quantity": 1,
+    "sub_type": 26,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "scroll labeled FUVE IHANOFINK",
+    "col": 9,
+    "tile": [
+     561
+    ]
+   },
+   "10": {
+    "base_type": 2,
+    "quantity": 1,
+    "sub_type": 9,
+    "plus": 0,
+    "plus2": 0,
+    "flags": 0,
+    "inscription": "",
+    "name": "helmet",
+    "col": 8,
+    "tile": [
+     450
+    ]
+   },
+   "11": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "12": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "13": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "14": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "15": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "16": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "17": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "18": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "19": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "20": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "21": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "22": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "23": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "24": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "25": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "26": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "27": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "28": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "29": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "30": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "31": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "32": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "33": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "34": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "35": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "36": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "37": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "38": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "39": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "40": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "41": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "42": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "43": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "44": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "45": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "46": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "47": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "48": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "49": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "50": {
+    "base_type": 100,
+    "quantity": 0
+   },
+   "51": {
+    "base_type": 100,
+    "quantity": 0
+   }
+  },
+  "equip": {
+   "0": 0,
+   "1": -1,
+   "2": -1,
+   "3": -1,
+   "4": -1,
+   "5": -1,
+   "6": 1,
+   "7": 8,
+   "8": -1,
+   "9": -1,
+   "10": -1,
+   "11": -1,
+   "12": -1,
+   "13": -1,
+   "14": -1,
+   "15": -1,
+   "16": -1,
+   "17": -1,
+   "18": -1
+  },
+  "quiver_item": -1,
+  "unarmed_attack": "Nothing wielded",
+  "unarmed_attack_colour": 7,
+  "quiver_available": 1
  }
 ]

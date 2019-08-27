@@ -1,7 +1,8 @@
+
 from itertools import count
 from Reinforcement import Utils, Agent, Dqn, Experience
-from Environment import DungeonEnv
-
+from Environment import DungeonEnv, MapHandler, StateUpdateHandler
+'''
 utils = Utils()
 environment = DungeonEnv()
 
@@ -55,9 +56,7 @@ em.close()
 
 '''
 
-from MapHandler import MapHandler
 import json
-from StateUpdate import StateUpdateHandler
 from pyautogui import press, typewrite, hotkey
 
 
@@ -72,4 +71,3 @@ if __name__ == "__main__":
 
 
 
-'''

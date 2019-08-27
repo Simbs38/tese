@@ -1,7 +1,7 @@
 import json
+import re
 
 '''
-
 Message Color Meaning:
 	<lightred>       - For messages you should most likely pay attention to
 	<red>            - For messages about health or item destruction, or other very bad things
@@ -16,34 +16,30 @@ Message Color Meaning:
 	<blue>           - For messages that describe when either you or an enemy attacks/casts
 	<magenta>        - For messages relating to Gods
 
-
-
 '''
-
-
 
 class MessageParser:
 	def TryParseMessage(self, msg, dungeon):
 		if 'msg' in msg:
 			if msg['msg'] == 'msgs':
 				self.ParseMessage(msg, dungeon)
-		else:
-			self.ParseUserInfo(msg, dungeon)
-
-
+			elif msg['msg'] == 'player':
+				self.ParseUserInfo(msg, dungeon)
+			
 	def ParseMessage(self, msg, dungeon):
 		if 'messages' in msg:
 			for item in msg["messages"]:
 				if "text" in item:
-					if "<lightred>" in item["text"]:
+					if "ReinforcementStats" in item["text"]:
+						self.ParseReinforcementStats(item["text"], dungeon)
 						pass
-					elif "<red>" in item["text"]:
-						pass
-					elif "<yellow>" in item["text"]:
-						pass
-					elif "<brown>" in item["text"]:
-						print(item["text"]) # no messages found with this color
-						pass
+					elif "Done exploring" in item["text"]:
+						dungeon.ExploringDone = True
+					elif "You climb" in item["text"]:
+						dungeon.ExploringDone = False
+					elif "You have reached level" in item["text"]:
+						self.ParseLevel(item["text"], dungeon)
+					'''
 					elif "<lightblue>" in item["text"]:
 						#print(item["text"]) # scrolls and potions that are on this space and can be picked up
 						#check if is worth picking up the potions and scrolls
@@ -52,28 +48,46 @@ class MessageParser:
 						#print(item["text"]) #items that are on this space and can be picked up
 						#check if is worth picking up the item 
 						pass
-					elif "<lightgreen>" in item["text"]:
-						#print(item["text"])
-						pass
-					elif "<lightmagenta>" in item["text"]:
-						#print(item["text"])
-						pass
-					elif "<cyan>" in item["text"]:
-						#print(item["text"])
-						pass
-					elif "<blue>" in item["text"]:
-						#print(item["text"])
-						pass
-					elif "<magenta>" in item["text"]:
-						#print(item["text"])
-						pass
-					elif "<darkgrey>" in item["text"]:
-						pass #messages that can be ignored about combat info
-					elif "<lightgrey>" in item["text"]:
-						#print(item["text"])
-						pass
-					else:
-						print(item["text"])
+					'''
+
 
 	def ParseUserInfo(self, msg, dungeon):
-		pass
+		print("here")
+		if "species" in msg:
+			dungeon.PlayerClass = msg["species"]
+		if "hp" in msg:
+			dungeon.Hp = msg["hp"]
+		if "str" in msg:
+			dungeon.Strength = msg["str"]
+		if "int" in msg:
+			dungeon.Intelligence = msg["int"]
+		if "dex" in msg:
+			dungeon.Dexterity = msg["dex"]
+		if "xl" in msg:
+			dungeon.Level = msg["xl"]
+		if "progress" in msg:
+			dungeon.LevelProgress = msg["progress"]
+		if "turn" in msg:
+			dungeon.Turns = msg["turn"]
+
+	def ParseLevel(self, msg, dungeon):
+		msgParts = re.split("[! ]", msg)
+		try:
+			level = int(msgParts[4])
+			dungeon.Level = level
+		except Exception as e:
+			pass
+
+	def ParseReinforcementStats(self, msg, dungeon):
+		msgParts = re.split("[ <>]", msg)
+		dungeon.PlayerRace = msgParts[3]
+		dungeon.PlayerClass = msgParts[4]
+		dungeon.Hp = msgParts[5]
+		dungeon.Dexterity = msgParts[6]
+		dungeon.Intelligence = msgParts[7]
+		dungeon.Strength = msgParts[8]
+		dungeon.HaveOrb = msgParts[ 9]
+		dungeon.Hunger = msgParts[10]
+		dungeon.Turns =  msgParts[11]
+		dungeon.Where = msgParts[12]
+		dungeon.LevelProgress = msgParts[13]

@@ -1,8 +1,6 @@
 from server import BeemServer
 
-
 def main():
-    print("Starting connections")
     server = BeemServer()
     server.start()
 

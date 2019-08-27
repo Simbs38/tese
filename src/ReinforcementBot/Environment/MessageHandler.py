@@ -14,12 +14,11 @@ class MessageHandler():
 		while not messageParsed:
 			try:
 				dataDict = loads(data)
+				self.HandleMsg(dataDict)
 				messageParsed = True
 			except Exception as e:
 				sleep(0.01)
-			finally:
-				self.HandleMsg(dataDict)
-
+				
 	def HandleMsg(self, dataDict):
 		for key, value in dataDict.items():
 			if((key == "username") and (value == "simbs38") or (key == "name")     and (value == "simbs38")):

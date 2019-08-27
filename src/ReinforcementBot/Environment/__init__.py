@@ -1,1 +1,4 @@
 from Environment.DCSSEnv import DungeonEnv
+from Environment.MapHandler import MapHandler
+from Environment.StateUpdate import StateUpdateHandler
+from Environment.MessageHandler import MessageHandler

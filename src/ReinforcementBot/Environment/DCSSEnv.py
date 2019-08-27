@@ -2,6 +2,20 @@
 class DungeonEnv:
 	def __init__(self):
 		self.done = False
+		self.Hp = 0
+		self.PlayerClass = ""
+		self.PlayerRace = ""
+		self.God = ""
+		self.Dexterity = 0
+		self.Intelligence = 0
+		self.Strength = 0
+		self.HaveOrb = False
+		self.Hunger = 0
+		self.Turns = 0
+		self.Where = ""
+		self.LevelProgress = 0
+		self.Level = 0
+		self.ExploringDone = False
 		pass
 
 	def step(self,action):
