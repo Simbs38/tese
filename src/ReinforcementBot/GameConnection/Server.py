@@ -17,13 +17,13 @@ import sys
 import traceback
 import webtiles
 
-from config import BotConfig
-from webtiles import WebTilesManager
+from GameConnection.Config import BotConfig
+from GameConnection.Webtiles import WebTilesManager
 
 # Will be configured by beem_server after the config is loaded.
 _log = logging.getLogger()
 
-class BeemServer:
+class GameConnection:
     def __init__(self):
         self.webtiles_task = None
         self.loop = asyncio.get_event_loop()
@@ -52,10 +52,6 @@ class BeemServer:
             else:
                 _log.info(msg)
             self.stop(is_error)
-
-        for signame in ("SIGINT", "SIGTERM"):
-            self.loop.add_signal_handler(getattr(signal, signame),
-                                           functools.partial(do_exit, signame))
         self.loop.run_until_complete(self.process())
         self.loop.close()
 

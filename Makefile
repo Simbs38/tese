@@ -1,8 +1,6 @@
 
 run:
-	python3 src/ReinforcementBot/main.py & python3 src/GameConnection/main.py
-
-bot:
+	clear
 	python3 src/ReinforcementBot/main.py
 
 server: 

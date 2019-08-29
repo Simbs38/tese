@@ -17,7 +17,7 @@ import socket
 import json
 from websockets.exceptions import ConnectionClosed
 
-from connection import WebTilesConnection, WebTilesGameConnection
+from GameConnection.Connection import WebTilesConnection, WebTilesGameConnection
 
 _log = logging.getLogger()
 

@@ -1,4 +1,7 @@
 
+from Environment.MapHandler import MapHandler
+from Environment.StateUpdate import StateUpdateHandler
+
 class DungeonEnv:
 	def __init__(self):
 		self.done = False
@@ -17,6 +20,7 @@ class DungeonEnv:
 		self.Level = 0
 		self.ExploringDone = False
 		self.Map = MapHandler()
+		self.MessageHandler = StateUpdateHandler(self)
 		pass
 
 	def step(self,action):

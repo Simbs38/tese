@@ -1,10 +1,13 @@
-
 from itertools import count
 from Reinforcement import Utils, Agent, Dqn, Experience
 from Environment import DungeonEnv, MapHandler, StateUpdateHandler
-'''
+from GameConnection import GameConnection
+from threading import Thread
+
 utils = Utils()
 environment = DungeonEnv()
+Thread(target=environment.MessageHandler.start).start()
+Thread(target=GameConnection().start).start()
 
 agent = Agent(utils, environment)
 
@@ -15,15 +18,16 @@ utils.startOptimizer(policyNet)
 
 targetNet.load_state_dict(policyNet.state_dict())
 targetNet.eval()
-environment = DungeonEnv()
 
 episodesDuration = []
 
 for episode in range(utils.NumEpisodes):
+	print("episode")
 	environment.reset()
 	state = environment.getState()
 
 	for timestep in count():
+		print("step")
 		action = agent.selectAction(state, policyNet)
 		reward = environment.step(action)
 		nextState = environment.getState()
@@ -71,4 +75,5 @@ if __name__ == "__main__":
 
 
 
+'''
 

@@ -1,0 +1,4 @@
+from GameConnection.Config import BotConfig
+from GameConnection.Connection import WebTilesConnection, WebTilesGameConnection
+from GameConnection.Server import GameConnection
+from GameConnection.Webtiles import ConnectionHandler
