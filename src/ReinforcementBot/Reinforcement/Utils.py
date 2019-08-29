@@ -21,8 +21,8 @@ class Utils:
 		self.MemorySize = 100000
 		self.LearningRate = 0.001
 		self.NumEpisodes = 1000
-		self.InputSize = 256 #check this after
-		self.OutputSize = 10
+		self.InputSize = 1610
+		self.OutputSize = 12
 
 		self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 		self.Strategy = EpsilonGreedyStrategy(self)
