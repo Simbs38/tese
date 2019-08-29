@@ -5,8 +5,10 @@ import os
 class MessageHandler():
 	messagesReceived = None
 
-	def __init__(self):
+	def __init__(self, dungeon):
 		self.messagesReceived = []
+		self.dungeon = dungeon
+		self.parser = MessageParser(dungeon)
 
 	def ReceiveMsg(self, msg):
 		data = msg.decode('utf-8')
@@ -21,41 +23,12 @@ class MessageHandler():
 				
 	def HandleMsg(self, dataDict):
 		for key, value in dataDict.items():
-			if((key == "username") and (value == "simbs38") or (key == "name")     and (value == "simbs38")):
-				print("user")
-				self.HandleMsgUser(dataDict)
+			if((key == "username") and (value == "simbs38") or (key == "name") and (value == "simbs38")):
+				self.parser.ParseUserInfo(dataDict)
 				break
 			elif (value == "map"):
-				print("map")
-				self.HandleMsgMap(dataDict)
+				self.dungeon.Map.UpdateMap(dataDict)
 				break
 			elif ( value == "msgs"):
-				print("msgs")
-				self.HandleMsgMsgs(dataDict)
+				self.parser.ParseMessage(dataDict)
 				break
-
-	def HandleMsgUser(self, msg):
-		self.GeneralHandler(msg)
-		print("User " + str(type(msg)))
-
-	def HandleMsgMap(self, msg):
-		#self.GeneralHandler(msg)
-		print("Map " + str(type(msg)))
-
-	def HandleMsgMsgs(self, msg):
-		self.GeneralHandler(msg)
-		print("Messages " + str(type(msg)))
-
-
-	def GeneralHandler(self, msg):
-		oldData = None
-		with open('messages.txt','r') as json_file:
-			if os.path.getsize('messages.txt') > 0:
-				oldData = loads(json_file.read())
-		with open('messages.txt','w+') as json_file:
-			if oldData == None:
-				oldData = []
-			oldData.append(msg)
-			jsoned_data = dumps(oldData, indent = True)
-			json_file.write(jsoned_data)
-

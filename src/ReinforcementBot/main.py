@@ -62,6 +62,7 @@ from pyautogui import press, typewrite, hotkey
 
 if __name__ == "__main__":
     St = StateUpdateHandler()
+    print("done")
 
 
 

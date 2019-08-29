@@ -9,10 +9,10 @@ class StateUpdateHandler():
     server_socket = None
     msg = None
 
-    def __init__(self):
+    def __init__(self, dungeon):
         self.server_socket = socket.socket()
         self.server_socket.bind((HOST, PORT))
-        self.msg = MessageHandler()
+        self.msg = MessageHandler(dungeon)
         self.StartServer()
 
     def StartServer(self):

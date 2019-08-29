@@ -19,26 +19,33 @@ Message Color Meaning:
 '''
 
 class MessageParser:
-	def TryParseMessage(self, msg, dungeon):
+	def __init__(self, dungeon):
+		self.dungeon = dungeon
+
+	def TryParseMessage(self, msg):
 		if 'msg' in msg:
 			if msg['msg'] == 'msgs':
-				self.ParseMessage(msg, dungeon)
+				self.ParseMessage(msg)
 			elif msg['msg'] == 'player':
-				self.ParseUserInfo(msg, dungeon)
+				self.ParseUserInfo(msg)
 			
-	def ParseMessage(self, msg, dungeon):
+	def ParseMessage(self, msg):
 		if 'messages' in msg:
 			for item in msg["messages"]:
 				if "text" in item:
 					if "ReinforcementStats" in item["text"]:
-						self.ParseReinforcementStats(item["text"], dungeon)
+						self.ParseReinforcementStats(item["text"])
 						pass
 					elif "Done exploring" in item["text"]:
-						dungeon.ExploringDone = True
+						self.dungeon.ExploringDone = True
 					elif "You climb" in item["text"]:
-						dungeon.ExploringDone = False
+						self.dungeon.ExploringDone = False
+						if "downwards" in item["text"]:
+							self.dungeon.Map.LowerOneLevel()
+						else:
+							self.dungeon.Map.UpOneLevel()
 					elif "You have reached level" in item["text"]:
-						self.ParseLevel(item["text"], dungeon)
+						self.ParseLevel(item["text"])
 					'''
 					elif "<lightblue>" in item["text"]:
 						#print(item["text"]) # scrolls and potions that are on this space and can be picked up
@@ -51,43 +58,43 @@ class MessageParser:
 					'''
 
 
-	def ParseUserInfo(self, msg, dungeon):
+	def ParseUserInfo(self, msg):
 		print("here")
 		if "species" in msg:
-			dungeon.PlayerClass = msg["species"]
+			self.dungeon.PlayerClass = msg["species"]
 		if "hp" in msg:
-			dungeon.Hp = msg["hp"]
+			self.dungeon.Hp = msg["hp"]
 		if "str" in msg:
-			dungeon.Strength = msg["str"]
+			self.dungeon.Strength = msg["str"]
 		if "int" in msg:
-			dungeon.Intelligence = msg["int"]
+			self.dungeon.Intelligence = msg["int"]
 		if "dex" in msg:
-			dungeon.Dexterity = msg["dex"]
+			self.dungeon.Dexterity = msg["dex"]
 		if "xl" in msg:
-			dungeon.Level = msg["xl"]
+			self.dungeon.Level = msg["xl"]
 		if "progress" in msg:
-			dungeon.LevelProgress = msg["progress"]
+			self.dungeon.LevelProgress = msg["progress"]
 		if "turn" in msg:
-			dungeon.Turns = msg["turn"]
+			self.dungeon.Turns = msg["turn"]
 
-	def ParseLevel(self, msg, dungeon):
+	def ParseLevel(self, msg):
 		msgParts = re.split("[! ]", msg)
 		try:
 			level = int(msgParts[4])
-			dungeon.Level = level
+			self.dungeon.Level = level
 		except Exception as e:
 			pass
 
-	def ParseReinforcementStats(self, msg, dungeon):
+	def ParseReinforcementStats(self, msg):
 		msgParts = re.split("[ <>]", msg)
-		dungeon.PlayerRace = msgParts[3]
-		dungeon.PlayerClass = msgParts[4]
-		dungeon.Hp = msgParts[5]
-		dungeon.Dexterity = msgParts[6]
-		dungeon.Intelligence = msgParts[7]
-		dungeon.Strength = msgParts[8]
-		dungeon.HaveOrb = msgParts[ 9]
-		dungeon.Hunger = msgParts[10]
-		dungeon.Turns =  msgParts[11]
-		dungeon.Where = msgParts[12]
-		dungeon.LevelProgress = msgParts[13]
+		self.dungeon.PlayerRace = msgParts[3]
+		self.dungeon.PlayerClass = msgParts[4]
+		self.dungeon.Hp = msgParts[5]
+		self.dungeon.Dexterity = msgParts[6]
+		self.dungeon.Intelligence = msgParts[7]
+		self.dungeon.Strength = msgParts[8]
+		self.dungeon.HaveOrb = msgParts[ 9]
+		self.dungeon.Hunger = msgParts[10]
+		self.dungeon.Turns =  msgParts[11]
+		self.dungeon.Where = msgParts[12]
+		self.dungeon.LevelProgress = msgParts[13]

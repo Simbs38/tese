@@ -16,6 +16,7 @@ class DungeonEnv:
 		self.LevelProgress = 0
 		self.Level = 0
 		self.ExploringDone = False
+		self.Map = MapHandler()
 		pass
 
 	def step(self,action):
