@@ -26,7 +26,7 @@ class DungeonEnv:
 		pass
 
 	def step(self,action):
-		pass
+		return torch.tensor(0, dtype = torch.float32)
 
 	def reset(self):
 		self.done = False
@@ -56,8 +56,7 @@ class DungeonEnv:
 		state = playerStats + mapState
 		state = self.ClearState(state)
 		state = np.array(state)
-		ans = torch.from_numpy(state)
-		print(ans.size())
+		ans = torch.from_numpy(state).type(torch.FloatTensor)
 		return ans
 		
 

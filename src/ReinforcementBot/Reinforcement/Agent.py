@@ -14,9 +14,9 @@ class Agent:
 
 		if rate > random.random():
 			action = random.randrange(self.numActions)
-			return torch.tensor([action]).to(self.device)
+			return torch.tensor(action).to(self.device)
 		else:
 			with torch.no_grad():
-				return policyNet(state).argmax(dim=1).to(self.device)
+				return policyNet(state).argmax().to(self.device)
 
 

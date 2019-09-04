@@ -1,8 +1,10 @@
 from itertools import count
-from Reinforcement import Utils, Agent, Dqn, Experience
+from Reinforcement import Utils, Agent, Dqn, Experience, QValues
 from Environment import DungeonEnv, MapHandler, StateUpdateHandler
 from GameConnection import GameConnection
 from threading import Thread
+import torch.nn.functional as F
+import torch
 
 utils = Utils()
 environment = DungeonEnv()
@@ -27,7 +29,6 @@ for episode in range(utils.NumEpisodes):
 	state = environment.getState()
 
 	for timestep in count():
-		print("step")
 		action = agent.selectAction(state, policyNet)
 		reward = environment.step(action)
 		nextState = environment.getState()
@@ -43,8 +44,10 @@ for episode in range(utils.NumEpisodes):
 			nextQValues = QValues.getNext(targetNet,nextStates, utils)
 			targetQValues = (nextQValues * utils.Gamma) + rewards
 
+			currentQValues.type(torch.float32)
+			targetQValues.type(torch.float32)
 
-			loss = F.mse_loss(currentQValues, targetQValues.unsqueeze(1))
+			loss = F.mse_loss(currentQValues.float, targetQValues.unsqueeze(1))
 			utils.optimizer.zero_grad()
 			loss.backward()
 			utils.optimizer.step()
