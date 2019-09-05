@@ -36,7 +36,7 @@ class Utils:
 		
 		t1 = torch.stack(batch.state)
 		t2 = torch.stack(batch.action)
-		t3 = torch.stack(batch.reward).long()
+		t3 = torch.stack(batch.reward)
 		t4 = torch.stack(batch.next_state)
 
 		return (t1,t2,t3,t4)

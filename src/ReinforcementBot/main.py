@@ -24,7 +24,6 @@ targetNet.eval()
 episodesDuration = []
 
 for episode in range(utils.NumEpisodes):
-	print("episode")
 	environment.reset()
 	state = environment.getState()
 
@@ -44,22 +43,26 @@ for episode in range(utils.NumEpisodes):
 			nextQValues = QValues.getNext(targetNet,nextStates, utils)
 			targetQValues = (nextQValues * utils.Gamma) + rewards
 
-			currentQValues.type(torch.float32)
-			targetQValues.type(torch.float32)
-
-			loss = F.mse_loss(currentQValues.float, targetQValues.unsqueeze(1))
+			targetQValues = targetQValues.unsqueeze(1)
+			currentQValues = currentQValues
+			
+			loss = F.mse_loss(currentQValues, targetQValues)
 			utils.optimizer.zero_grad()
 			loss.backward()
 			utils.optimizer.step()
-
+			
 		if environment.done:
 			episodesDuration.append(timestep)
 
 	if episode & utils.TargetUpdate == 0:
 		targetNet.load_state_dict(policyNet.state_dict())
 
+	print("episode end")
+
+
 em.close()
 
+print("done")
 
 '''
 

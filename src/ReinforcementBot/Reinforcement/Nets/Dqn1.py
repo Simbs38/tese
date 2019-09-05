@@ -13,5 +13,4 @@ class Dqn(nn.Module):
 		t = F.relu(self.fc1(t))
 		t = F.relu(self.fc2(t))
 		t = self.out(t)
-		t = t.long()
 		return t
