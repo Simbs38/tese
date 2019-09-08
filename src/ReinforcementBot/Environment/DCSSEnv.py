@@ -1,7 +1,10 @@
 from Environment.MapHandler import MapHandler
 from Environment.StateUpdate import StateUpdateHandler
+from Environment.KeyboardController import KeyboardController
 import numpy as np
 import torch
+
+from time import sleep
 
 
 class DungeonEnv:
@@ -23,10 +26,29 @@ class DungeonEnv:
 		self.ExploringDone = False
 		self.Map = MapHandler()
 		self.MessageHandler = StateUpdateHandler(self)
+		self.Keyboard = KeyboardController()
 		pass
 
 	def step(self,action):
-		return torch.tensor(0, dtype = torch.float32)
+		tmpLevelProgress = self.LevelProgress
+		tmpLevel = self.Level
+
+		print("=======================================================")
+
+		self.Keyboard.ExecutAction(action)
+		sleep(1)
+
+		ans = self.LevelProgress - tmpLevelProgress
+		if(self.Level != tmpLevel):
+			print("LEVEL",self.Level, tmpLevel)
+			ans = (100+self.LevelProgress) - tmpLevelProgress
+
+		print(tmpLevelProgress, self.LevelProgress)
+		print(ans)
+
+		print("=======================================================")
+
+		return torch.tensor(ans, dtype = torch.float32)
 
 	def reset(self):
 		self.done = False
@@ -47,9 +69,6 @@ class DungeonEnv:
 		self.Map = MapHandler()
 		pass
 
-	def render(self, close=False):
-		pass
-
 	def getState(self):
 		playerStats = [self.Hp, self.Dexterity, self.Intelligence, self.Strength, self.Hunger, self.HaveOrb, self.Turns, self.LevelProgress, self.Level, self.ExploringDone]
 		mapState = self.Map.GetState(20,20)
@@ -57,6 +76,7 @@ class DungeonEnv:
 		state = self.ClearState(state)
 		state = np.array(state)
 		ans = torch.from_numpy(state).type(torch.FloatTensor)
+
 		return ans
 		
 
@@ -74,7 +94,5 @@ class DungeonEnv:
 					if isinstance(subitem, str):
 						ans.append(ord(subitem[0]))
 				pass
-			else:
-				print(type(item))
 
 		return ans

@@ -63,23 +63,3 @@ for episode in range(utils.NumEpisodes):
 em.close()
 
 print("done")
-
-'''
-
-import json
-from pyautogui import press, typewrite, hotkey
-
-
-if __name__ == "__main__":
-    St = StateUpdateHandler()
-    print("done")
-
-
-
-#while(True):
-#	press('a') script to write to keyboard and make game work
-
-
-
-'''
-

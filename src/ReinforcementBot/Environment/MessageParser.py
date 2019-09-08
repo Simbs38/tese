@@ -59,23 +59,22 @@ class MessageParser:
 
 
 	def ParseUserInfo(self, msg):
-		print("here")
 		if "species" in msg:
 			self.dungeon.PlayerClass = msg["species"]
 		if "hp" in msg:
 			self.dungeon.Hp = msg["hp"]
 		if "str" in msg:
-			self.dungeon.Strength = msg["str"]
+			self.dungeon.Strength = int(msg["str"])
 		if "int" in msg:
-			self.dungeon.Intelligence = msg["int"]
+			self.dungeon.Intelligence = int(msg["int"])
 		if "dex" in msg:
-			self.dungeon.Dexterity = msg["dex"]
+			self.dungeon.Dexterity = int(msg["dex"])
 		if "xl" in msg:
-			self.dungeon.Level = msg["xl"]
+			self.dungeon.Level = int(msg["xl"])
 		if "progress" in msg:
-			self.dungeon.LevelProgress = msg["progress"]
+			self.dungeon.LevelProgress = int(msg["progress"])
 		if "turn" in msg:
-			self.dungeon.Turns = msg["turn"]
+			self.dungeon.Turns = float(msg["turn"])
 
 	def ParseLevel(self, msg):
 		msgParts = re.split("[! ]", msg)
@@ -89,12 +88,15 @@ class MessageParser:
 		msgParts = re.split("[ <>]", msg)
 		self.dungeon.PlayerRace = msgParts[3]
 		self.dungeon.PlayerClass = msgParts[4]
-		self.dungeon.Hp = msgParts[5]
-		self.dungeon.Dexterity = msgParts[6]
-		self.dungeon.Intelligence = msgParts[7]
-		self.dungeon.Strength = msgParts[8]
-		self.dungeon.HaveOrb = msgParts[ 9]
-		self.dungeon.Hunger = msgParts[10]
-		self.dungeon.Turns =  msgParts[11]
+		self.dungeon.Hp = int(msgParts[5])
+		self.dungeon.Dexterity = int(msgParts[6])
+		self.dungeon.Intelligence = int(msgParts[7])
+		self.dungeon.Strength = int(msgParts[8])
+		if(msgParts[9][0] == 'f' or msgParts[9][0] == 'F'):
+			self.dungeon.HaveOrb = False
+		else:
+			self.dungeon.HaveOrb = True
+		self.dungeon.Hunger = int(msgParts[10])
+		self.dungeon.Turns =  int(msgParts[11])
 		self.dungeon.Where = msgParts[12]
-		self.dungeon.LevelProgress = msgParts[13]
+		self.dungeon.LevelProgress = int(msgParts[13])
