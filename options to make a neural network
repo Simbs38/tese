@@ -1,0 +1,14 @@
+options to make a neural network:
+
+
+nodes in each layer:
+	midway between input and out
+	less than 2x the input nodes
+	2/3 the input nodes + output nodes
+
+linear:
+	when data is correlated, simple cases
+non-linear
+	when data is non correlated and cases are complex
+	-> sigmoid
+	-> tanh

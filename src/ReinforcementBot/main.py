@@ -5,15 +5,24 @@ from GameConnection import GameConnection
 from threading import Thread
 import torch.nn.functional as F
 import torch
+import os
 
 utils = Utils()
+
 environment = DungeonEnv()
 Thread(target=environment.MessageHandler.start).start()
 Thread(target=GameConnection().start).start()
 
 agent = Agent(utils, environment)
 
+
 policyNet = Dqn(utils)
+
+if os.path.isfile('./network.pth'):
+	print("here")
+	policyNet = torch.load('./network.pth')
+	policyNet.eval()
+
 targetNet = Dqn(utils)
 
 utils.startOptimizer(policyNet)
@@ -58,6 +67,7 @@ for episode in range(utils.NumEpisodes):
 		targetNet.load_state_dict(policyNet.state_dict())
 
 	print("episode end")
+	torch.save(policyNet, './network.pth')
 
 
 em.close()

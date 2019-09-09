@@ -27,26 +27,20 @@ class DungeonEnv:
 		self.Map = MapHandler()
 		self.MessageHandler = StateUpdateHandler(self)
 		self.Keyboard = KeyboardController()
+		self.actionCount = 0
 		pass
 
 	def step(self,action):
 		tmpLevelProgress = self.LevelProgress
 		tmpLevel = self.Level
 
-		print("=======================================================")
-
 		self.Keyboard.ExecutAction(action)
+		self.actionCount = self.actionCount + 1
 		sleep(1)
 
 		ans = self.LevelProgress - tmpLevelProgress
 		if(self.Level != tmpLevel):
-			print("LEVEL",self.Level, tmpLevel)
 			ans = (100+self.LevelProgress) - tmpLevelProgress
-
-		print(tmpLevelProgress, self.LevelProgress)
-		print(ans)
-
-		print("=======================================================")
 
 		return torch.tensor(ans, dtype = torch.float32)
 
@@ -81,8 +75,7 @@ class DungeonEnv:
 		
 
 	def getActionCount(self):
-		return 5
-
+		return self.actionCount
 
 	def ClearState(self, state):
 		ans = []
