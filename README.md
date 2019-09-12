@@ -40,3 +40,4 @@ The GameConnection package is simplification of the [Beem project](https://githu
 
 This project was made in colaboration with [Universidade do Minho](https://www.uminho.pt/PT) in the [Informatics Department](https://www.di.uminho.pt/) as a Masters Degrees Thesis in the area of Artificial Inteligence.
 
+## Results read @http://crawl.akrasiac.org/rawdata/simbs38/

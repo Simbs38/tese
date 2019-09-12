@@ -3,7 +3,7 @@ from pyautogui import press, keyDown, keyUp, hotkey
 
 class GameHandler:
 	def __init__(self):
-		pass
+		self.DataSaver = SaveData()
 
 	def HandlerMessage(self, message):
 		pass
