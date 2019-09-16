@@ -28,19 +28,40 @@ class DungeonEnv:
 		self.MessageHandler = StateUpdateHandler(self)
 		self.Keyboard = KeyboardController()
 		self.actionCount = 0
+		self.ValidMoves = 0
+		self.InvalidMoves = 0
+		self.MessagesReceived = 0
 		pass
 
 	def step(self,action):
 		tmpLevelProgress = self.LevelProgress
 		tmpLevel = self.Level
+		tmpTurns = self.Turns
+		maxTryCount = 0
 
-		self.Keyboard.ExecutAction(action)
-		self.actionCount = self.actionCount + 1
-		sleep(1)
+		while(tmpTurns == self.Turns):
+			if(maxTryCount!=0):
+				self.Keyboard.PressSpace()
+			self.Keyboard.ExecutAction(action)
+			self.actionCount = self.actionCount + 1
+
+			while(self.MessagesReceived == 0):
+				pass
+			self.MessagesReceived = 0
+			maxTryCount = maxTryCount + 1
+			if(maxTryCount > 5):
+				break
+
 
 		ans = self.LevelProgress - tmpLevelProgress
 		if(self.Level != tmpLevel):
 			ans = (100+self.LevelProgress) - tmpLevelProgress
+
+		if ans==0 and self.Turns == tmpTurns:
+			ans = -1
+			self.InvalidMoves = self.InvalidMoves + 1
+		else:
+			self.ValidMoves = self.ValidMoves + 1
 
 		return torch.tensor(ans, dtype = torch.float32)
 
@@ -73,10 +94,6 @@ class DungeonEnv:
 
 		return ans
 		
-
-	def getActionCount(self):
-		return self.actionCount
-
 	def ClearState(self, state):
 		ans = []
 		for item in state:

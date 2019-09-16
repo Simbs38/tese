@@ -222,7 +222,6 @@ class GameConnection(WebTilesGameConnection, ConnectionHandler):
     def handle_message(self, message):
         HOST = '127.0.0.1'  # The server's hostname or IP address
         PORT = 65432        # The port used by the server
-        
         for key, value in message.items():
             if((key == "username") and (value == "simbs38") or 
                (key == "name")     and (value == "simbs38") or

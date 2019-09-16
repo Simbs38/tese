@@ -29,6 +29,7 @@ class MessageHandler():
 				break
 			elif (value == "map"):
 				self.dungeon.Map.UpdateMap(dataDict)
+				self.dungeon.MessagesReceived = self.dungeon.MessagesReceived + 1
 				break
 			elif ( value == "msgs"):
 				self.parser.ParseMessage(dataDict)

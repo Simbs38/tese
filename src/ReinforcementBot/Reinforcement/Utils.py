@@ -4,7 +4,6 @@ import torch.optim as optim
 from Reinforcement import EpsilonGreedyStrategy, ReplayMemory
 
 
-
 Experience = namedtuple(
 	'Experience',
 	('state', 'action', 'next_state', 'reward')
@@ -17,12 +16,12 @@ class Utils:
 		self.EpsStart = 1
 		self.EpsEnd = 0.01
 		self.EpsDecay = 0.001
-		self.TargetUpdate = 10
+		self.TargetUpdate = 500
 		self.MemorySize = 100000
 		self.LearningRate = 0.001
-		self.NumEpisodes = 1000
+		self.NumEpisodes = 10000
 		self.InputSize = 1610
-		self.OutputSize = 12
+		self.OutputSize = 13
 
 		self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 		self.Strategy = EpsilonGreedyStrategy(self)

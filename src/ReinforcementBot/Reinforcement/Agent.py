@@ -5,9 +5,9 @@ class Agent:
 	def __init__(self, utils, env):
 		self.currentStep = 0
 		self.strategy = utils.Strategy
-		self.numActions = env.getActionCount()
+		self.numActions = utils.OutputSize
 		self.device = utils.device
-
+		
 	def selectAction(self, state, policyNet):
 		rate = self.strategy.getExplorationRate(self.currentStep)
 		self.currentStep +=1

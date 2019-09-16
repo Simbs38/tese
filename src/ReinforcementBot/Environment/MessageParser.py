@@ -35,7 +35,7 @@ class MessageParser:
 				if "text" in item:
 					if "ReinforcementStats" in item["text"]:
 						self.ParseReinforcementStats(item["text"])
-						pass
+						self.dungeon.MessagesReceived = self.dungeon.MessagesReceived + 1
 					elif "Done exploring" in item["text"]:
 						self.dungeon.ExploringDone = True
 					elif "You climb" in item["text"]:
@@ -46,17 +46,9 @@ class MessageParser:
 							self.dungeon.Map.UpOneLevel()
 					elif "You have reached level" in item["text"]:
 						self.ParseLevel(item["text"])
-					'''
-					elif "<lightblue>" in item["text"]:
-						#print(item["text"]) # scrolls and potions that are on this space and can be picked up
-						#check if is worth picking up the potions and scrolls
-						pass
-					elif "<green>" in item["text"]:
-						#print(item["text"]) #items that are on this space and can be picked up
-						#check if is worth picking up the item 
-						pass
-					'''
-
+					if "You die" in item["text"]:
+						print("DIIIIEEEEE")
+						self.dungeon.done = True
 
 	def ParseUserInfo(self, msg):
 		if "species" in msg:

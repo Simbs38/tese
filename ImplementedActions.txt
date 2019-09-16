@@ -13,3 +13,5 @@ auto explore:
 up and down stairs:
 	<
 	>
+eat
+	e+c
