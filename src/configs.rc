@@ -1,8 +1,22 @@
-auto_eat_chunks = true
+
+show_more = true
+
 
 {
 
 function ready()
   crawl.mpr("ReinforcementStats: " .. you.race() .. " " .. you.class() .. " " .. you.hp() .. " " ..  you.dexterity() .. " " .. you.intelligence() .. " " .. you.strength() .. " " .. tostring(you.have_orb()) .. " " .. you.hunger() .. " " .. you.turns() .. " " .. you.where() .. " " .. you.xl_progress())
+
+inv = iter.invent_iterator:new(items.inventory())
+
+stringInv = ""
+
+for it in inv do
+    stringInv = stringInv .. "InventoryStats " .. tostring(items.index_to_letter(it.slot)) .. " " .. it.class(true) .. ","
+end
+
+crawl.mpr(stringInv)
+
+
 end
 }
