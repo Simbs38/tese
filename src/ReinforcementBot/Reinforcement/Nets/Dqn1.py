@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 
-class Dqn(nn.Module):
+class Dqn1(nn.Module):
 	def __init__(self, utils):
 		super(Dqn, self).__init__()
 		self.fc1 = nn.Linear(in_features = utils.InputSize, out_features = 800)

@@ -1,5 +1,5 @@
 from itertools import count
-from Reinforcement import Utils, Agent, Dqn, Experience, QValues
+from Reinforcement import Utils, Agent, Experience, QValues
 from Environment import DungeonEnv, MapHandler, StateUpdateHandler
 from GameConnection import GameConnection
 from WebtilesHandler import GameHandler

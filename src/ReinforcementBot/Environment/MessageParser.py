@@ -36,6 +36,8 @@ class MessageParser:
 					if "ReinforcementStats" in item["text"]:
 						self.ParseReinforcementStats(item["text"])
 						self.dungeon.MessagesReceived = self.dungeon.MessagesReceived + 1
+					if "InventoryStats" in item["text"]:
+						self.ParseInventory(item["text"])
 					elif "Done exploring" in item["text"]:
 						self.dungeon.ExploringDone = True
 					elif "You climb" in item["text"]:
@@ -92,3 +94,12 @@ class MessageParser:
 		self.dungeon.Turns =  int(msgParts[11])
 		self.dungeon.Where = msgParts[12]
 		self.dungeon.LevelProgress = int(msgParts[13])
+
+	def ParseInventory(self, msg):
+		msgParts = re.split("[<>,]", msg)
+		for item in msgParts:
+			if("InventoryStats" in item):
+				tmpParts = re.split(" ",item)
+				if("food" in tmpParts[2]):
+					self.dungeon.FoodKey = tmpParts[1][0]
+					break

@@ -7,11 +7,12 @@ class KeyboardController:
 		self.actions = ['1','2','3','4','5','6','7','8','9','o','<','>','e']
 		pass
 
-	def ExecutAction(self, action):
+	def ExecutAction(self, action, food):
 		press(self.actions[action.item()])
 		if(self.actions[action] == 'e'):
 			sleep(0.5)
-			press('c')
+			press(food)
+			press('esc')
 
 	def PressSpace(self):
 		press("space")

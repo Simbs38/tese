@@ -3,12 +3,12 @@ from Environment.StateUpdate import StateUpdateHandler
 from Environment.KeyboardController import KeyboardController
 import numpy as np
 import torch
-
-from time import sleep
-
+import time
+from multiprocessing import Process
+from GameConnection import GameConnection
 
 class DungeonEnv:
-	def __init__(self):
+	def __init__(self, waitingTime):
 		self.done = False
 		self.Hp = 0
 		self.PlayerClass = ""
@@ -31,6 +31,9 @@ class DungeonEnv:
 		self.ValidMoves = 0
 		self.InvalidMoves = 0
 		self.MessagesReceived = 0
+		self.WaitingTime = waitingTime
+		self.GameConn = None
+		self.FoodKey = ''
 		pass
 
 	def step(self,action):
@@ -42,11 +45,18 @@ class DungeonEnv:
 		while(tmpTurns == self.Turns):
 			if(maxTryCount!=0):
 				self.Keyboard.PressSpace()
-			self.Keyboard.ExecutAction(action)
+			self.Keyboard.ExecutAction(action, self.FoodKey)
 			self.actionCount = self.actionCount + 1
-
+			
+			startTime = time.time()
 			while(self.MessagesReceived == 0):
-				pass
+				if(time.time() - startTime > self.WaitingTime):
+					self.GameConn.terminate()
+					self.GameConn.join()
+					self.GameConn = Process(target=GameConnection().start)
+					self.GameConn.start()
+					break
+			
 			self.MessagesReceived = 0
 			maxTryCount = maxTryCount + 1
 			if(maxTryCount > 5):
