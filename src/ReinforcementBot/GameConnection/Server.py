@@ -44,6 +44,7 @@ class GameConnection:
                         1)
 
     def start(self):
+        print("Starting conn")
         def do_exit(signame):
             is_error = True if signame == "SIGTERM" else False
             msg = "Shutting down server due to signal: {}".format(signame)

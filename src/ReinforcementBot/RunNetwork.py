@@ -14,7 +14,16 @@ class RunNetwork():
 	def __init__(self):
 		pass
 
-	def run(self, utils, environment, policyNet, targetNet, networkName, networkPath):
+	def run(self, utils, environment, policyNet, targetNet, networkName, networkDir):
+		if( not os.path.exists(networkDir)):
+			os.makedirs(networkDir)
+
+		networkPath = networkDir + "/network.pth"
+		fileTime = time.localtime()
+		stringTime = time.strftime("%m_%d_%Y_%H_%M", fileTime)
+		lossPath = networkDir + "/loss-" + stringTime + ".txt"
+		lossFile = open(lossPath, "w+")
+
 		environment.reset()
 		ga = GameHandler()
 		agent = Agent(utils, environment)
@@ -57,14 +66,16 @@ class RunNetwork():
 				loss.backward()
 				utils.optimizer.step()
 
-				print("| " + str(episode) + " loss: " + str(loss.item()), end =' ')
+				lossFile.write(str(episode) + " loss: " + str(loss.item()))
+				print(str(episode) + " loss: " + str(loss.item()))
 
 			if episode%utils.TargetUpdate == 0:
 				targetNet.load_state_dict(policyNet.state_dict())
 
 			episode = episode + 1
-			print("|" + str(episode), end = ' ')
 
+			print(episode)
+			
 			if episode%100 == 0:
 				named_tuple = time.localtime()
 				time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
@@ -74,6 +85,12 @@ class RunNetwork():
 				torch.save(policyNet, networkPath)
 
 			if environment.done:
+				named_tuple = time.localtime()
+				time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+				lossFile.write("Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves) + " " + time_string)
+				lossFile.write("##############################################")
+				lossFile.write("##############################################")
+				lossFile.write("##############################################")
 				print("DIIIIEEE IN MAIN " + "Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves))
 				environment.reset()
 				time.sleep(4)
@@ -85,4 +102,5 @@ class RunNetwork():
 		time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
 		networkLoss.append([time_string,loss])
 
+		lossFile.close()
 		print("Done " + networkName)

@@ -5,6 +5,7 @@ import numpy as np
 import torch
 import time
 from multiprocessing import Process
+from threading import Thread
 from GameConnection import GameConnection
 
 class DungeonEnv:
@@ -25,7 +26,6 @@ class DungeonEnv:
 		self.Level = 0
 		self.ExploringDone = False
 		self.Map = MapHandler()
-		self.MessageHandler = StateUpdateHandler(self)
 		self.Keyboard = KeyboardController()
 		self.actionCount = 0
 		self.ValidMoves = 0
@@ -33,35 +33,38 @@ class DungeonEnv:
 		self.MessagesReceived = 0
 		self.WaitingTime = waitingTime
 		self.GameConn = None
+		self.MessageConn = None
 		self.FoodKey = ''
+		self.StateUpdate = StateUpdateHandler(self)
 		pass
 
 	def step(self,action):
 		tmpLevelProgress = self.LevelProgress
 		tmpLevel = self.Level
 		tmpTurns = self.Turns
-		maxTryCount = 0
+		
+		self.Keyboard.PressSpace()
 
-		while(tmpTurns == self.Turns):
-			if(maxTryCount!=0):
-				self.Keyboard.PressSpace()
-			self.Keyboard.ExecutAction(action, self.FoodKey)
-			self.actionCount = self.actionCount + 1
-			
-			startTime = time.time()
-			while(self.MessagesReceived == 0):
-				if(time.time() - startTime > self.WaitingTime):
-					self.GameConn.terminate()
-					self.GameConn.join()
-					self.GameConn = Process(target=GameConnection().start)
-					self.GameConn.start()
-					break
-			
-			self.MessagesReceived = 0
-			maxTryCount = maxTryCount + 1
-			if(maxTryCount > 5):
+		self.Keyboard.ExecutAction(action, self.FoodKey)
+		self.actionCount = self.actionCount + 1
+		
+		time.sleep(0.3)
+		
+		startTime = time.time()
+		while(self.MessagesReceived == 0):
+			if(time.time() - startTime > self.WaitingTime):
+				self.GameConn.terminate()
+				self.GameConn.join()
+				self.StateUpdate.stop()
+				time.sleep(5)
+				self.GameConn = Process(target=GameConnection().start)
+				self.StateUpdate = StateUpdateHandler(self)
+				self.MessageConn = Thread(target= self.StateUpdate.start)
+				self.GameConn.start()
+				self.MessageConn.start()
 				break
-
+		
+		self.MessagesReceived = 0
 
 		ans = self.LevelProgress - tmpLevelProgress
 		if(self.Level != tmpLevel):
@@ -95,7 +98,7 @@ class DungeonEnv:
 		pass
 
 	def getState(self):
-		playerStats = [self.Hp, self.Dexterity, self.Intelligence, self.Strength, self.Hunger, self.HaveOrb, self.Turns, self.LevelProgress, self.Level, self.ExploringDone]
+		playerStats = [self.Hp, self.Dexterity, self.Intelligence, self.Strength, self.Hunger, self.HaveOrb, int(self.Turns), self.LevelProgress, self.Level, self.ExploringDone]
 		mapState = self.Map.GetState(20,20)
 		state = playerStats + mapState
 		state = self.ClearState(state)

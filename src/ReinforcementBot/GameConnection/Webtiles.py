@@ -267,7 +267,7 @@ class WebTilesManager():
         
         self.service = "WebTiles"
         self.single_user = conf.get("watch_player") is not None
-
+        
         self.lobby = None
         self.autowatch_candidate = None
         self.autowatch = None
