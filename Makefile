@@ -1,7 +1,13 @@
 
+
 run:
 	clear
 	python3 src/ReinforcementBot/main.py
+
+old:
+	while true  ; do \
+		python3 src/ReinforcementBot/main.py ; \
+	done
 
 dev:
 	clear

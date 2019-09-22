@@ -7,8 +7,8 @@ class KeyboardController:
 		self.actions = ['1','2','3','4','5','6','7','8','9','o','<','>','e']
 		pass
 
-	def ExecutAction(self, action, food):
-		print("action " + self.actions[action.item()])
+	def ExecutAction(self, action, food, turns):
+		print("action " + self.actions[action.item()] + " at Turn:" + str(turns))
 		press(self.actions[action.item()])
 		if(self.actions[action] == 'e'):
 			sleep(0.5)
@@ -18,8 +18,4 @@ class KeyboardController:
 			press('esc')
 
 	def PressSpace(self):
-		press("space")
-		press("space")
-		press("space")
-		press("space")
 		press("space")

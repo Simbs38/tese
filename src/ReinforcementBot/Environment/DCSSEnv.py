@@ -36,23 +36,28 @@ class DungeonEnv:
 		self.MessageConn = None
 		self.FoodKey = ''
 		self.StateUpdate = StateUpdateHandler(self)
+		self.ResetCount = 0
 		pass
 
 	def step(self,action):
 		tmpLevelProgress = self.LevelProgress
 		tmpLevel = self.Level
 		tmpTurns = self.Turns
+		tmpMap = self.Map.GetMapExploration()
+		tmpMapDepth = self.Map.currentLevel
+		tmpHp = self.Hp
 		
 		self.Keyboard.PressSpace()
 
-		self.Keyboard.ExecutAction(action, self.FoodKey)
+		self.Keyboard.ExecutAction(action, self.FoodKey, self.Turns)
 		self.actionCount = self.actionCount + 1
 		
-		time.sleep(0.3)
+		time.sleep(1)
 		
 		startTime = time.time()
 		while(self.MessagesReceived == 0):
 			if(time.time() - startTime > self.WaitingTime):
+				self.ResetCount = self.ResetCount + 1
 				self.GameConn.terminate()
 				self.GameConn.join()
 				self.StateUpdate.stop()
@@ -64,17 +69,12 @@ class DungeonEnv:
 				self.MessageConn.start()
 				break
 		
+		if(time.time() - startTime < self.WaitingTime):
+			self.ResetCount = 0
+
 		self.MessagesReceived = 0
 
-		ans = self.LevelProgress - tmpLevelProgress
-		if(self.Level != tmpLevel):
-			ans = (100+self.LevelProgress) - tmpLevelProgress
-
-		if ans==0 and self.Turns == tmpTurns:
-			ans = -1
-			self.InvalidMoves = self.InvalidMoves + 1
-		else:
-			self.ValidMoves = self.ValidMoves + 1
+		ans = self.GetReward(tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth ,tmpHp)
 
 		return torch.tensor(ans, dtype = torch.float32)
 
@@ -117,5 +117,34 @@ class DungeonEnv:
 					if isinstance(subitem, str):
 						ans.append(ord(subitem[0]))
 				pass
+
+		return ans
+
+	def GetReward(self,tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth, tmpHp):
+
+		#Consider player xp level
+		ans = self.LevelProgress - tmpLevelProgress
+		if(self.Level != tmpLevel):
+			ans = (100+self.LevelProgress) - tmpLevelProgress
+
+		#Consider player hp
+		ans = ans - (tmpHp - self.Hp)
+
+		#Consider player hunger
+		if (self.Hunger < 4):
+			ans = ans - (4 - self.Hunger)
+
+		#Consider if the player made or not a valid mode in the game
+		if ans==0 and self.Turns == tmpTurns:
+			ans = -1
+			self.InvalidMoves = self.InvalidMoves + 1
+		else:
+			self.ValidMoves = self.ValidMoves + 1
+
+		#Consider if the player explored the map or not, and if it was went deeper into the dungeon
+		if tmpMapDepth != self.Map.currentLevel:
+			ans = ans + 100
+		else:
+			ans = ans + (tmpMap - self.Map.GetMapExploration())
 
 		return ans

@@ -1,7 +1,7 @@
 from RunNetwork import RunNetwork as RN
 from time import sleep
 from Environment import DungeonEnv
-from Reinforcement import Utils, Dqn1, Dqn2
+from Reinforcement import Utils, Dqn1, Dqn2, Dqn3, Dqn4, Dqn5
 from multiprocessing import Process
 from GameConnection import GameConnection
 from threading import Thread
@@ -14,9 +14,10 @@ environment.GameConn = Process(target=GameConnection().start)
 environment.GameConn.start()
 environment.MessageConn.start()
 
+#################################################################### Teste1
+
 policyNet = Dqn2(utils)
 targetNet = Dqn2(utils)
-
 net = RN()
 
 print("Network is about to start, please select the game tab")
@@ -25,3 +26,39 @@ print("Network Starting")
 
 net.run(utils, environment, policyNet, targetNet, "dqn2", "./DQN2")
 
+#################################################################### Teste2
+
+policyNet = Dqn3(utils)
+targetNet = Dqn3(utils)
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn3", "./DQN3")
+
+#################################################################### Teste3
+
+policyNet = Dqn4(utils)
+targetNet = Dqn4(utils)
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn4", "./DQN4")
+
+#################################################################### Teste4
+
+policyNet = Dqn5(utils)
+targetNet = Dqn5(utils)
+
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5")

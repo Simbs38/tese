@@ -135,3 +135,12 @@ class MapHandler:
 			
 	def GetState(self, lines, colls):
 		return self.map[self.currentLevel].GetState(lines, colls)
+
+	def GetMapExploration(self):
+		ans = 0
+		for i in range(len(self.map[self.currentLevel].map)):
+			for j in range(len(self.map[self.currentLevel].map[0])):
+				if(self.map[self.currentLevel].map[i][j]!='.'):
+					ans = ans + 1
+
+		return ans

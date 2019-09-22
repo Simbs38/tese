@@ -1,5 +1,6 @@
 from Environment.MessageHandler import MessageHandler
 import socket
+from time import sleep
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432       # Port to listen on (non-privileged ports are > 1023)
@@ -20,10 +21,24 @@ class StateUpdateHandler():
                 data = conn.recv(10000000)
                 if not data:
                     break
-                self.msg.ReceiveMsg(data)
+
+                if(data.decode('utf-8') == "exit"):
+                    print("i seted false")
+                    self.run = False
+                else:
+                    self.msg.ReceiveMsg(data)
             conn.close()
 
-    def stop(self):
-        print("shuting down message Receiver")
-        self.run = False
+        self.server_socket.shutdown(socket.SHUT_RDWR)
         self.server_socket.close()
+        
+    def stop(self):
+        print("Shuting down message Receiver")
+        client_socket = socket.socket()  # instantiate
+        client_socket.connect((HOST, PORT))
+        try:    
+            while True:
+                client_socket.send("exit".encode('utf-8'))
+        except:
+            print("Exit message sent")
+        client_socket.close()

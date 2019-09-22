@@ -47,6 +47,10 @@ class RunNetwork():
 			action = agent.selectAction(state, policyNet)
 			reward = environment.step(action)
 			nextState = environment.getState()
+			
+			if(environment.ResetCount > 5):
+				break
+
 			utils.Memory.push(Experience(state, action, nextState, reward))
 			state = nextState
 
