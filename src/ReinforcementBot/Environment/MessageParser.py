@@ -1,23 +1,6 @@
 import json
 import re
 
-'''
-Message Color Meaning:
-	<lightred>       - For messages you should most likely pay attention to
-	<red>            - For messages about health or item destruction, or other very bad things
-	<yellow>         - For messages you should probably pay attention to, includes when stuff makes noise
-	<darkgrey>       - For messages you probably don't need to pay attention to
-	<brown>          - For messages that describe damage to you or an ally
-	<lightblue>      - For messages that describe you or an ally doing damage to an enemy
-	<green>          - For messages that describe a beneficial effect that doesn't do damage
-	<lightgreen>     - For messages that describe when something dies or something good occurs
-	<lightmagenta>   - For messages that describe gaining good mutations
-	<cyan>           - For messages that describe something to the player
-	<blue>           - For messages that describe when either you or an enemy attacks/casts
-	<magenta>        - For messages relating to Gods
-
-'''
-
 class MessageParser:
 	def __init__(self, dungeon):
 		self.dungeon = dungeon
@@ -48,8 +31,9 @@ class MessageParser:
 							self.dungeon.Map.UpOneLevel()
 					elif "You have reached level" in item["text"]:
 						self.ParseLevel(item["text"])
+					elif "Increase (S)trength, (I)ntelligence, or (D)exterity?" in item["text"]:
+						self.IncreaseLevel() 
 					if "You die" in item["text"]:
-						print("DIIIIEEEEE")
 						self.dungeon.done = True
 
 	def ParseUserInfo(self, msg):
@@ -96,10 +80,15 @@ class MessageParser:
 		self.dungeon.LevelProgress = int(msgParts[13])
 
 	def ParseInventory(self, msg):
+		tmpFood = ''
 		msgParts = re.split("[<>,]", msg)
 		for item in msgParts:
 			if("InventoryStats" in item):
 				tmpParts = re.split(" ",item)
 				if("food" in tmpParts[2]):
-					self.dungeon.FoodKey = tmpParts[1][0]
+					tmpFood = tmpParts[1][0]
 					break
+		self.dungeon.FoodKey = tmpFood
+
+	def IncreaseLevel(self):
+		dungeon.ChooseStatToUpgrade()

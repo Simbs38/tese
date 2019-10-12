@@ -12,6 +12,7 @@ import time
 
 class RunNetwork():
 	def __init__(self):
+		self.totalReward = 0
 		pass
 
 	def run(self, utils, environment, policyNet, targetNet, networkName, networkDir):
@@ -24,10 +25,8 @@ class RunNetwork():
 		lossPath = networkDir + "/loss-" + stringTime + ".txt"
 		lossFile = open(lossPath, "w+")
 
-		environment.reset()
 		ga = GameHandler()
 		agent = Agent(utils, environment)
-
 
 		if os.path.isfile(networkPath):
 			policyNet = torch.load(networkPath)
@@ -38,7 +37,6 @@ class RunNetwork():
 		targetNet.load_state_dict(policyNet.state_dict())
 		targetNet.eval()
 
-		networkLoss = []
 		state = environment.getState()
 		episode = 0
 		
@@ -46,6 +44,7 @@ class RunNetwork():
 
 			action = agent.selectAction(state, policyNet)
 			reward = environment.step(action)
+			self.totalReward = self.totalReward + reward
 			nextState = environment.getState()
 			
 			if(environment.ResetCount > 5):
@@ -63,15 +62,16 @@ class RunNetwork():
 				targetQValues = (nextQValues * utils.Gamma) + rewards
 
 				targetQValues = targetQValues.unsqueeze(1)
-				currentQValues = currentQValues
 				
 				loss = F.mse_loss(currentQValues, targetQValues)
 				utils.optimizer.zero_grad()
 				loss.backward()
 				utils.optimizer.step()
 
-				lossFile.write(str(episode) + " loss: " + str(loss.item()))
+				lossFile.write(str(episode) + " loss: " + str(loss.item()) + "\n")
+				lossFile.write("Reward: " + str(self.totalReward) + "\n")
 				print(str(episode) + " loss: " + str(loss.item()))
+
 
 			if episode%utils.TargetUpdate == 0:
 				targetNet.load_state_dict(policyNet.state_dict())
@@ -83,7 +83,7 @@ class RunNetwork():
 			if episode%100 == 0:
 				named_tuple = time.localtime()
 				time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
-				networkLoss.append([time_string,loss])
+				lossFile.write("Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves) + " " + time_string+ "\n")
 
 			if episode % 1000 == 0:
 				torch.save(policyNet, networkPath)
@@ -91,11 +91,11 @@ class RunNetwork():
 			if environment.done:
 				named_tuple = time.localtime()
 				time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
-				lossFile.write("Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves) + " " + time_string)
-				lossFile.write("##############################################")
-				lossFile.write("##############################################")
-				lossFile.write("##############################################")
-				print("DIIIIEEE IN MAIN " + "Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves))
+				lossFile.write("Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves) + " " + time_string + "\n")
+				lossFile.write("##############################################" + "\n")
+				lossFile.write("##############################################" + "\n")
+				lossFile.write("##############################################" + "\n")
+				print("Valid Moves: " + str(environment.ValidMoves) + " " + str(environment.InvalidMoves) + "\n")
 				environment.reset()
 				time.sleep(4)
 				print("restarting")
@@ -104,7 +104,6 @@ class RunNetwork():
 		print(str(episode) + " "  + str(utils.NumEpisodes) + " " +str(environment.done) )
 		named_tuple = time.localtime()
 		time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
-		networkLoss.append([time_string,loss])
 
 		lossFile.close()
 		print("Done " + networkName)

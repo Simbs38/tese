@@ -46,10 +46,11 @@ class DungeonEnv:
 		tmpMap = self.Map.GetMapExploration()
 		tmpMapDepth = self.Map.currentLevel
 		tmpHp = self.Hp
-		
+
+
 		self.Keyboard.PressSpace()
 
-		self.Keyboard.ExecutAction(action, self.FoodKey, self.Turns)
+		actionKey = self.Keyboard.ExecutAction(action, self.FoodKey, self.Turns)
 		self.actionCount = self.actionCount + 1
 		
 		time.sleep(1)
@@ -62,6 +63,7 @@ class DungeonEnv:
 				self.GameConn.join()
 				self.StateUpdate.stop()
 				time.sleep(5)
+				self.Keyboard.UpgradeStats()
 				self.GameConn = Process(target=GameConnection().start)
 				self.StateUpdate = StateUpdateHandler(self)
 				self.MessageConn = Thread(target= self.StateUpdate.start)
@@ -74,7 +76,12 @@ class DungeonEnv:
 
 		self.MessagesReceived = 0
 
-		ans = self.GetReward(tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth ,tmpHp)
+		ans = self.GetReward(tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth ,tmpHp, actionKey)
+
+		if(self.ExploringDone):
+			self.Keyboard.GoDownStairs()
+
+		print("Reward: " + str(ans))
 
 		return torch.tensor(ans, dtype = torch.float32)
 
@@ -120,7 +127,7 @@ class DungeonEnv:
 
 		return ans
 
-	def GetReward(self,tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth, tmpHp):
+	def GetReward(self,tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth, tmpHp, actionKey):
 
 		#Consider player xp level
 		ans = self.LevelProgress - tmpLevelProgress
@@ -130,21 +137,28 @@ class DungeonEnv:
 		#Consider player hp
 		ans = ans - (tmpHp - self.Hp)
 
-		#Consider player hunger
-		if (self.Hunger < 4):
-			ans = ans - (4 - self.Hunger)
+		if(actionKey == 'e'):
+			if(self.Hunger > 5):
+				return -500
 
 		#Consider if the player made or not a valid mode in the game
 		if ans==0 and self.Turns == tmpTurns:
-			ans = -1
+			ans = -100
 			self.InvalidMoves = self.InvalidMoves + 1
 		else:
 			self.ValidMoves = self.ValidMoves + 1
 
 		#Consider if the player explored the map or not, and if it was went deeper into the dungeon
 		if tmpMapDepth != self.Map.currentLevel:
-			ans = ans + 100
+			ans = ans + 500
 		else:
-			ans = ans + (tmpMap - self.Map.GetMapExploration())
+			ans = ans + (self.Map.GetMapExploration() - tmpMap)
+			if(self.Map.GetMapExploration() - tmpMap !=0):
+				print("Map exploration: " + str(self.Map.GetMapExploration() - tmpMap))
+			else:
+				ans = ans - 1
 
 		return ans
+
+	def ChooseStatToUpgrade(self):
+		self.Keyboard.UpgradeStats()

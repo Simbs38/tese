@@ -4,12 +4,12 @@ import torch
 
 class Dqn4(nn.Module):
 	def __init__(self, utils):
-		super(Dqn2, self).__init__()
+		super(Dqn4, self).__init__()
 		self.sigmoid = nn.Sigmoid()
 		self.fc1 = nn.Linear(utils.InputSize, 900)
-		self.fc2 = nn.Linear(600, 400)
-		self.fc3 = nn.Linear(400, 275)
-		self.fc4 = nn.Linear(275, 180)
+		self.fc2 = nn.Linear(900, 600)
+		self.fc3 = nn.Linear(600, 300)
+		self.fc4 = nn.Linear(300, 180)
 		self.fc5 = nn.Linear(180, 60)
 		self.fc6 = nn.Linear(60, utils.OutputSize)
 

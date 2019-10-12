@@ -11,11 +11,20 @@ class KeyboardController:
 		print("action " + self.actions[action.item()] + " at Turn:" + str(turns))
 		press(self.actions[action.item()])
 		if(self.actions[action] == 'e'):
-			sleep(0.5)
 			print("food at " + food)
+			sleep(0.5)
 			press(food)
 			sleep(0.5)
 			press('esc')
 
+		return self.actions[action]
+
 	def PressSpace(self):
 		press("space")
+		
+	def UpgradeStats(self):
+		press('S')
+
+	def GoDownStairs(self):
+		press('G')
+		press('>')

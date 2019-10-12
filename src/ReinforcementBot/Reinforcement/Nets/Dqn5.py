@@ -4,7 +4,7 @@ import torch
 
 class Dqn5(nn.Module):
 	def __init__(self, utils):
-		super(Dqn2, self).__init__()
+		super(Dqn5, self).__init__()
 		self.sigmoid = nn.Sigmoid()
 		self.fc1  = nn.Linear(utils.InputSize, 2000)
 		self.fc2  = nn.Linear(2000, 2500)

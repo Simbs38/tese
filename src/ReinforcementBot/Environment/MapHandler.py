@@ -18,7 +18,7 @@ Considerations about the map structure:
 
 class MapLevel:
 	def __init__(self):
-		self.map = [['.']]
+		self.map = [[' ']]
 		self.StartPos = (0,0)
 		self.currentPos = (0,0)
 		self.PlayerPos = (0,0)
@@ -28,7 +28,7 @@ class MapLevel:
 		for i in range(n):
 			line = []
 			for j in range(size):
-				line.append('.')
+				line.append(' ')
 			self.map.insert(0,line)
 			self.StartPos = (self.StartPos[0]+1, self.StartPos[1])
 			self.PlayerPos = (self.PlayerPos[0]+1, self.PlayerPos[1])
@@ -38,14 +38,14 @@ class MapLevel:
 		for i in range(n):
 			line = []
 			for j in range(size):
-				line.append('.')
+				line.append(' ')
 			self.map.append(line)
 		
 	def AddColumnBefore(self, n):
 		size = len(self.map)
 		for i in range(n):
 			for j in range(size):
-				self.map[j].insert(0, '.')
+				self.map[j].insert(0, ' ')
 			self.StartPos  = (self.StartPos[0], self.StartPos[1] + 1)
 			self.PlayerPos = (self.PlayerPos[0], self.PlayerPos[1]+1)
 
@@ -54,7 +54,7 @@ class MapLevel:
 		size = len(self.map)
 		for i in range(n):
 			for j in range(size):
-				self.map[j].append('.')
+				self.map[j].append(' ')
 		
 	def AddCell(self,cell):
 		self.UpdatePosition(cell)
@@ -89,10 +89,14 @@ class MapLevel:
 	def ParseCell(self, cell):
 		if 'g' in cell:
 			self.map[self.currentPos[0] + self.StartPos[0]][self.currentPos[1] + self.StartPos[1]] = cell['g']
-			if cell['g'] == '@':
+			if 'mon' in cell:
+				name = cell['mon']['name']
+				threat = cell['mon']['threat']
+				print(name, "at distance ", self.currentPos[0] - self.PlayerPos[0], self.currentPos[1] - self.PlayerPos[1], "threat:", threat)
+			elif cell['g'] == '@':
 				self.PlayerPos = (self.currentPos[0] + self.StartPos[0], self.currentPos[1] + self.StartPos[1])
-		
-	def GetState(self, lines, colls):
+			
+	def getState(self, lines, colls):
 		if lines > self.PlayerPos[0]:
 			self.AddLinesBefore(lines - self.PlayerPos[0])
 		if lines > (len(self.map) -  (self.PlayerPos[0])):
@@ -106,7 +110,7 @@ class MapLevel:
 
 		for i in range(lines * 2):
 			line = self.map[self.PlayerPos[0] + i - lines]
-			line = line[self.StartPos[1] - colls: self.StartPos[1] + colls]
+			line = line[self.PlayerPos[1] - colls: self.PlayerPos[1] + colls]
 			MapState.append(line)
 
 		return MapState
@@ -119,8 +123,8 @@ class MapHandler:
 	def LowerOneLevel(self, msg = None):
 		self.currentLevel += 1
 		if(len(self.map)<(self.currentLevel+1)):
-			self.Map.append(MapLevel())
-		
+			self.map.append(MapLevel())
+
 		if msg!=None:
 			self.UpdateMap(msg)
 
@@ -134,13 +138,13 @@ class MapHandler:
 			self.map[self.currentLevel].AddCell(cell)
 			
 	def GetState(self, lines, colls):
-		return self.map[self.currentLevel].GetState(lines, colls)
+		return self.map[self.currentLevel].getState(lines, colls)
 
 	def GetMapExploration(self):
 		ans = 0
 		for i in range(len(self.map[self.currentLevel].map)):
 			for j in range(len(self.map[self.currentLevel].map[0])):
-				if(self.map[self.currentLevel].map[i][j]!='.'):
+				if(self.map[self.currentLevel].map[i][j]!=' '):
 					ans = ans + 1
 
 		return ans

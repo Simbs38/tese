@@ -4,13 +4,13 @@ import torch
 
 class Dqn3(nn.Module):
 	def __init__(self, utils):
-		super(Dqn2, self).__init__()
+		super(Dqn3, self).__init__()
 		self.sigmoid = nn.Sigmoid()
 		self.fc1 = nn.Linear(utils.InputSize, 800)
-		self.fc2 = nn.Linear(400, 200)
-		self.fc3 = nn.Linear(200, 100)
-		self.fc4 = nn.Linear(100, 50)
-		self.fc5 = nn.Linear(25, utils.OutputSize)
+		self.fc2 = nn.Linear(800, 400)
+		self.fc3 = nn.Linear(400, 200)
+		self.fc4 = nn.Linear(200, 100)
+		self.fc5 = nn.Linear(100, utils.OutputSize)
 		
 	def forward(self, t):
 		t = self.fc1(t)

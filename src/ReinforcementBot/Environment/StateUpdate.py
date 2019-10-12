@@ -21,9 +21,7 @@ class StateUpdateHandler():
                 data = conn.recv(10000000)
                 if not data:
                     break
-
                 if(data.decode('utf-8') == "exit"):
-                    print("i seted false")
                     self.run = False
                 else:
                     self.msg.ReceiveMsg(data)
@@ -33,11 +31,10 @@ class StateUpdateHandler():
         self.server_socket.close()
         
     def stop(self):
-        print("Shuting down message Receiver")
-        client_socket = socket.socket()  # instantiate
-        client_socket.connect((HOST, PORT))
         try:    
             while True:
+                client_socket = socket.socket()  # instantiate
+                client_socket.connect((HOST, PORT))
                 client_socket.send("exit".encode('utf-8'))
         except:
             print("Exit message sent")

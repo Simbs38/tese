@@ -1,6 +1,6 @@
 from Environment.MessageParser import MessageParser
 from json import load, loads, dumps
-from time import sleep
+from time import sleep, time
 import os    
 
 class MessageHandler():
@@ -14,7 +14,10 @@ class MessageHandler():
 	def ReceiveMsg(self, msg):
 		data = msg.decode('utf-8')
 		messageParsed = False
+		startTime = time()
 		while not messageParsed:
+			if time() - startTime > 4 :
+				break
 			try:
 				dataDict = loads(data)
 				self.HandleMsg(dataDict)
