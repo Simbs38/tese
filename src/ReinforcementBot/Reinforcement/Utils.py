@@ -21,7 +21,7 @@ class Utils:
 		self.LearningRate = 0.001
 		self.NumEpisodes = 10000
 		self.InputSize = 1610
-		self.OutputSize = 13
+		self.OutputSize = 11
 		self.WaitingTime = 10
 
 		self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

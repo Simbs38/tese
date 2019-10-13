@@ -139,18 +139,18 @@ class DungeonEnv:
 
 		if(actionKey == 'e'):
 			if(self.Hunger > 5):
-				return -500
+				return -5
 
 		#Consider if the player made or not a valid mode in the game
 		if ans==0 and self.Turns == tmpTurns:
-			ans = -100
+			ans = -2
 			self.InvalidMoves = self.InvalidMoves + 1
 		else:
 			self.ValidMoves = self.ValidMoves + 1
 
 		#Consider if the player explored the map or not, and if it was went deeper into the dungeon
 		if tmpMapDepth != self.Map.currentLevel:
-			ans = ans + 500
+			ans = ans + 10
 		else:
 			ans = ans + (self.Map.GetMapExploration() - tmpMap)
 			if(self.Map.GetMapExploration() - tmpMap !=0):

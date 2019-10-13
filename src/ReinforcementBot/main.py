@@ -78,7 +78,7 @@ print("Network is about to start, please select the game tab")
 sleep(5)
 print("Network Starting")
 
-net.run(utils, environment, policyNet, targetNet, "dqn3", "./DQN3MAPLR")
+net.run(utils, environment, policyNet, targetNet, "dqn3", "./DQN3MAPLR1")
 
 
 #################################################################### Teste3
@@ -91,7 +91,7 @@ print("Network is about to start, please select the game tab")
 sleep(5)
 print("Network Starting")
 
-net.run(utils, environment, policyNet, targetNet, "dqn4", "./DQN4MAPLR")
+net.run(utils, environment, policyNet, targetNet, "dqn4", "./DQN4MAPLR1")
 
 #################################################################### Teste4
 
@@ -104,4 +104,45 @@ print("Network is about to start, please select the game tab")
 sleep(5)
 print("Network Starting")
 
-net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5MAPLR")
+net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5MAPLR1")
+
+
+
+utils.LearningRate = 0.00001
+
+
+policyNet = Dqn3(utils)
+targetNet = Dqn3(utils)
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn3", "./DQN3MAPLR2")
+
+
+#################################################################### Teste3
+
+policyNet = Dqn4(utils)
+targetNet = Dqn4(utils)
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn4", "./DQN4MAPLR2")
+
+#################################################################### Teste4
+
+policyNet = Dqn5(utils)
+targetNet = Dqn5(utils)
+
+net = RN()
+
+print("Network is about to start, please select the game tab")
+sleep(5)
+print("Network Starting")
+
+net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5MAPLR2")

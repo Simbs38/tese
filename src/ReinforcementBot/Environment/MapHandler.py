@@ -92,7 +92,7 @@ class MapLevel:
 			if 'mon' in cell:
 				name = cell['mon']['name']
 				threat = cell['mon']['threat']
-				print(name, "at distance ", self.currentPos[0] - self.PlayerPos[0], self.currentPos[1] - self.PlayerPos[1], "threat:", threat)
+				print(name, cell['g'], "threat:", threat)
 			elif cell['g'] == '@':
 				self.PlayerPos = (self.currentPos[0] + self.StartPos[0], self.currentPos[1] + self.StartPos[1])
 			
