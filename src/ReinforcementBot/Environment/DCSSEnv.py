@@ -50,7 +50,7 @@ class DungeonEnv:
 
 		self.Keyboard.PressSpace()
 
-		actionKey = self.Keyboard.ExecutAction(action, self.FoodKey, self.Turns)
+		actionKey = self.Keyboard.ExecutAction(action, self.Turns)
 		self.actionCount = self.actionCount + 1
 		
 		time.sleep(1)
@@ -75,6 +75,9 @@ class DungeonEnv:
 			self.ResetCount = 0
 
 		self.MessagesReceived = 0
+
+		if(self.Hunger < 3):
+			self.Keyboard.eat(self.FoodKey)
 
 		ans = self.GetReward(tmpLevelProgress, tmpLevel, tmpTurns, tmpMap, tmpMapDepth ,tmpHp, actionKey)
 

@@ -12,16 +12,16 @@ Experience = namedtuple(
 class Utils:
 	def __init__(self):
 		self.BatchSize = 50
-		self.Gamma = 0.999
+		self.Gamma = 0.99
 		self.EpsStart = 1
 		self.EpsEnd = 0.01
-		self.EpsDecay = 0.001
+		self.EpsDecay = 0.0001
 		self.TargetUpdate = 500
 		self.MemorySize = 100000
 		self.LearningRate = 0.001
 		self.NumEpisodes = 10000
 		self.InputSize = 1610
-		self.OutputSize = 11
+		self.OutputSize = 10
 		self.WaitingTime = 10
 
 		self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -23,7 +23,7 @@ class MessageHandler():
 				self.HandleMsg(dataDict)
 				messageParsed = True
 			except Exception as e:
-				sleep(0.01)
+				pass
 				
 	def HandleMsg(self, dataDict):
 		for key, value in dataDict.items():

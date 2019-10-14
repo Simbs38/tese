@@ -68,7 +68,7 @@ net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5MAP")
 print("UPDATED LEARNING RATE")
 '''
 utils.LearningRate = 0.0001
-
+'''
 
 policyNet = Dqn3(utils)
 targetNet = Dqn3(utils)
@@ -82,7 +82,7 @@ net.run(utils, environment, policyNet, targetNet, "dqn3", "./DQN3MAPLR1")
 
 
 #################################################################### Teste3
-
+'''
 policyNet = Dqn4(utils)
 targetNet = Dqn4(utils)
 net = RN()
@@ -106,6 +106,7 @@ print("Network Starting")
 
 net.run(utils, environment, policyNet, targetNet, "dqn5", "./DQN5MAPLR1")
 
+#################################################################### Teste3
 
 
 utils.LearningRate = 0.00001
