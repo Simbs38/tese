@@ -15,8 +15,7 @@ To run the project the user must:
 
 ## Dependencys
 
-
-
++ PyTorch
 
 ## The MakeFile
 
@@ -31,7 +30,7 @@ The project consists of several packages that work together.
 There are 4 main packages in the project:
 
 + [Reinforcement](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Reinforcement)
-+ [Environment](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Environment).
++ [Environment](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Environment)
 + [GameConnection](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/GameConnection)
 + [WebtilesHanlder](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/WebtilesHandler)
 

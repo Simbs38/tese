@@ -8,7 +8,7 @@ This configuration file prints messages with relevant data to the message board,
 
 ## Toml Config File
 
-Besides that configuration file, you will also need to adjust the + [.toml file](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/GameConnection/config.toml) that has some user specific configurations.
+Besides that configuration file, you will also need to adjust the [.toml file](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/GameConnection/config.toml) that has some user specific configurations.
 
 The filds that you need to change are:
 
