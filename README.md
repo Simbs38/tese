@@ -23,10 +23,6 @@ To run the network, run the command make, to analyse the results, run the comand
 
 ## Project Arquitecture
 
-The project consists of several packages that work together. 
-
-### ReinforcementBot
-
 There are 4 main packages in the project:
 
 + [Reinforcement](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Reinforcement)
