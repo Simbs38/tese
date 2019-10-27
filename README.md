@@ -14,7 +14,12 @@ To run the project the user must:
 
 ## Dependencys
 
+
+
+
 ## The MakeFile
+
+To run the network, run the command make, to analyse the results, run the comand make res, after inserting all of the results in the folder results
 
 ## Project Arquitecture
 
@@ -22,11 +27,12 @@ The project consists of several packages that work together.
 
 ### ReinforcementBot
 
-There are 3 main packages in the project:
+There are 4 main packages in the project:
 
 + [Reinforcement](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Reinforcement)
 + [Environment](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/Environment).
-+ [GameConnection](https://github.com/Simbs38/tese/tree/master/src/GameConnection)
++ [GameConnection](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/GameConnection)
++ [WebtilesHanlder](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/WebtilesHandler)
 
 The Reinforcement handles all the classes that are needed to run deep reinforcement learning, and the Environment deals with the game state in every step of the game.
 
@@ -39,5 +45,3 @@ The GameConnection package is simplification of the [Beem project](https://githu
 
 
 This project was made in colaboration with [Universidade do Minho](https://www.uminho.pt/PT) in the [Informatics Department](https://www.di.uminho.pt/) as a Masters Degrees Thesis in the area of Artificial Inteligence.
-
-## Results read @http://crawl.akrasiac.org/rawdata/simbs38/

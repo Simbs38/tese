@@ -4,14 +4,9 @@ run:
 	clear
 	python3 src/ReinforcementBot/main.py
 
-old:
-	while true  ; do \
-		python3 src/ReinforcementBot/main.py ; \
-	done
-
-dev:
+res:
 	clear
-	python3 src/ReinforcementBot/mainDev.py
+	python3 src/ReinforcementBot/WebtilesHandler/ResultsHandler.py
 
 clean:
 	echo "To Do"
