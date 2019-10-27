@@ -34,11 +34,6 @@ There are 4 main packages in the project:
 + [GameConnection](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/GameConnection)
 + [WebtilesHanlder](https://github.com/Simbs38/tese/tree/master/src/ReinforcementBot/WebtilesHandler)
 
-The Reinforcement handles all the classes that are needed to run deep reinforcement learning, and the Environment deals with the game state in every step of the game.
-
-The main file uses the classes in the Reinforcement and Environment packages, in order to run the network under our build environment. 
-To update the environment, a thread is created to listen to messages sent from the game, this messages are parsed and update the state of the environment, and from this we can improve our network and learn how to play the game.
-
 ## Project Background
 
 The GameConnection package is simplification of the [Beem project](https://github.com/gammafunk/beem), where we just use the code that gets us the game information as 
