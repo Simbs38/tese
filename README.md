@@ -7,10 +7,11 @@ The project was made to run under localy using the webtiles version of the game,
 ## Running the project
 
 To run the project the user must:
-+ Edit the config.toml file
-+ Copy the content of the [.rc file](https://github.com/Simbs38/tese/blob/master/src/configs.rc) to the .rc file in use
-+ Install all dependencys
-+ Run the make command from the main folder
++ [Configure the project;](https://github.com/Simbs38/tese/tree/master/src)
++ [Install all dependencys;](https://github.com/Simbs38/tese#dependencys)
++ Open the webtiles game in the browser and enter the game;
++ Run the make command from the main folder;
++ Click the webtiles game to make the commands afect the game.
 
 ## Dependencys
 
