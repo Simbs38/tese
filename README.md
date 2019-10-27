@@ -32,7 +32,7 @@ There are 4 main packages in the project:
 
 ## Project Background
 
-The GameConnection package is simplification of the [Beem project](https://github.com/gammafunk/beem), where we just use the code that gets us the game information as 
+The GameConnection package is simplification of the [Beem project](https://github.com/gammafunk/beem), where we just use the code that gets us the game information suchs as JSON messages.
 
 
 This project was made in colaboration with [Universidade do Minho](https://www.uminho.pt/PT) in the [Informatics Department](https://www.di.uminho.pt/) as a Masters Degrees Thesis in the area of Artificial Inteligence.
